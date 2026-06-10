@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,7 +35,6 @@ import {
   type OpportunityScore,
 } from "@/lib/types/database";
 import { formatCents, formatDate, titleCase } from "@/lib/utils";
-import { GenerateSummaryButton } from "./generate-summary-button";
 
 export const metadata: Metadata = { title: "Client · Admin", robots: { index: false } };
 
@@ -186,7 +186,18 @@ export default async function AdminClientPage({
                 Move stage
               </Button>
             </form>
-            <GenerateSummaryButton organizationId={org.id} />
+            <div className="flex items-center gap-2">
+              <Link href={`/admin/clients/${org.id}/stack`}>
+                <Button variant="outline" size="sm">
+                  Operating stack
+                </Button>
+              </Link>
+              <Link href={`/admin/clients/${org.id}/readout`}>
+                <Button variant="outline" size="sm">
+                  Audit readout
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
 
