@@ -98,6 +98,16 @@ describe("positioning guardrails", () => {
     }
   });
 
+  it("aligns every example workflow with a seeded workflow_playbooks slug", () => {
+    const seed = readFileSync(path.resolve(__dirname, "../supabase/seed.sql"), "utf8");
+    const playbookSection = seed.slice(seed.indexOf("insert into public.workflow_playbooks"));
+    for (const wf of EXAMPLE_WORKFLOWS) {
+      expect(playbookSection, `no seeded playbook for example workflow ${wf.slug}`).toContain(
+        `'${wf.slug}'`
+      );
+    }
+  });
+
   it("contains the hard risk boundaries", () => {
     const joined = RISK_BOUNDARIES.join(" ").toLowerCase();
     for (const term of ["hipaa", "student", "tenant", "payroll", "human review", "children"]) {

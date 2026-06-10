@@ -53,6 +53,13 @@ describe("migrations: row level security", () => {
       "comments",
       "service_packages",
       "activity_events",
+      // operating layer
+      "tool_vendors",
+      "workflow_playbooks",
+      "client_tool_instances",
+      "stack_recommendations",
+      "stack_recommendation_items",
+      "audit_readouts",
     ];
     for (const table of expected) {
       expect(createdTables, `missing table ${table}`).toContain(table);
@@ -94,6 +101,104 @@ describe("migrations: row level security", () => {
     for (const policy of eventPolicies) {
       expect(policy.includes("for update")).toBe(false);
       expect(policy.includes("for delete")).toBe(false);
+    }
+  });
+});
+
+describe("migrations: operating layer security", () => {
+  const OPERATING_TABLES = [
+    "tool_vendors",
+    "workflow_playbooks",
+    "client_tool_instances",
+    "stack_recommendations",
+    "stack_recommendation_items",
+    "audit_readouts",
+  ];
+
+  function policiesFor(table: string): string[] {
+    return [
+      ...sql.matchAll(new RegExp(`create policy "[^"]*"\\s+on public\\.${table}[\\s\\S]*?;`, "g")),
+    ].map((m) => m[0]);
+  }
+
+  it("extends the existing data_sensitivity enum with 'prohibited' (no parallel taxonomy)", () => {
+    expect(sql).toContain("alter type public.data_sensitivity add value if not exists 'prohibited'");
+    // No second classification enum sneaks in.
+    expect(sql.match(/create type public\.[a-z_]*sensitivity/g) ?? []).toHaveLength(1);
+  });
+
+  it("never grants anon any access to operating-layer tables", () => {
+    for (const table of OPERATING_TABLES) {
+      for (const policy of policiesFor(table)) {
+        expect(policy.includes("anon"), `anon access on ${table}: ${policy}`).toBe(false);
+      }
+    }
+  });
+
+  it("keeps the internal doctrine tables (tool_vendors, workflow_playbooks) admin-only", () => {
+    for (const table of ["tool_vendors", "workflow_playbooks"]) {
+      const policies = policiesFor(table);
+      expect(policies.length).toBeGreaterThan(0);
+      for (const policy of policies) {
+        expect(policy, `${table} policy must require is_admin()`).toContain("public.is_admin()");
+        expect(
+          policy.includes("is_org_member"),
+          `${table} must never be org-member readable: ${policy}`
+        ).toBe(false);
+      }
+    }
+  });
+
+  it("lets org members read stack_recommendations only when status = 'shared'", () => {
+    const selects = policiesFor("stack_recommendations").filter((p) => p.includes("for select"));
+    expect(selects.length).toBeGreaterThan(0);
+    for (const policy of selects) {
+      if (policy.includes("is_org_member")) {
+        expect(policy, "member read must be gated on shared status").toContain("status = 'shared'");
+      }
+    }
+  });
+
+  it("gates stack_recommendation_items reads on the shared parent recommendation", () => {
+    const selects = policiesFor("stack_recommendation_items").filter((p) =>
+      p.includes("for select")
+    );
+    expect(selects.length).toBeGreaterThan(0);
+    for (const policy of selects) {
+      if (policy.includes("is_org_member")) {
+        expect(policy).toContain("stack_recommendations");
+        expect(policy).toContain("status = 'shared'");
+      }
+    }
+  });
+
+  it("lets org members read audit_readouts only when client_visible", () => {
+    const selects = policiesFor("audit_readouts").filter((p) => p.includes("for select"));
+    expect(selects.length).toBeGreaterThan(0);
+    for (const policy of selects) {
+      if (policy.includes("is_org_member")) {
+        expect(policy, "member read must be gated on client_visible").toContain(
+          "client_visible = true"
+        );
+      }
+    }
+  });
+
+  it("keeps all operating-layer writes admin-only", () => {
+    for (const table of OPERATING_TABLES) {
+      const writes = policiesFor(table).filter(
+        (p) => p.includes("for insert") || p.includes("for update") || p.includes("for delete") || p.includes("for all")
+      );
+      expect(writes.length, `no write policies found for ${table}`).toBeGreaterThan(0);
+      for (const policy of writes) {
+        expect(policy, `write on ${table} must require is_admin(): ${policy}`).toContain(
+          "public.is_admin()"
+        );
+        expect(
+          policy.includes("is_org_member"),
+          `org members must not write operating-layer table ${table}`
+        ).toBe(false);
+      }
     }
   });
 });
