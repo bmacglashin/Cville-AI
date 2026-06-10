@@ -52,7 +52,7 @@ export default function TermsPage() {
               incomplete, or out of date. Deliverables and workflows we build are designed with
               human review steps, and clients are responsible for reviewing AI-assisted output
               before relying on it or sending it to third parties. We do not build or operate
-              systems that take autonomous action on a client's business or customers.
+              systems that act on a client's business or customers without human review.
             </p>
           </section>
 
@@ -80,8 +80,11 @@ export default function TermsPage() {
             <h2 className="font-display text-2xl text-ink">6. Intellectual property</h2>
             <p className="mt-4">
               Audit deliverables and workflow SOPs produced for your engagement belong to you on
-              full payment. Our underlying methods, templates, prompt frameworks, and tooling
-              remain ours. Engagement-specific IP terms are set out in the SOW.
+              full payment, and tool accounts configured during an engagement belong to your
+              business from day one. Our underlying methods, templates, prompt frameworks,
+              playbooks, and vetting criteria remain ours. Third-party tools remain governed by
+              their vendors' terms — we are not affiliated with, and do not resell or sublicense,
+              any tool vendor. Engagement-specific IP terms are set out in the SOW.
             </p>
           </section>
 

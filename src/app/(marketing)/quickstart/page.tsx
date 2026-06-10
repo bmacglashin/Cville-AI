@@ -28,9 +28,9 @@ export default function QuickstartPage() {
               The AI Workflow Quickstart.
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              One workflow from your audit roadmap. Two weeks. Working in your business, with a
-              written SOP your team can run without us. No custom platform, no rip-and-replace, no
-              twelve-month transformation program.
+              One workflow from your audit roadmap. Two weeks. Working in tools your business
+              already owns, with a written SOP your team can run without us. No custom platform,
+              no rip-and-replace, no twelve-month transformation program.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/apply">
@@ -133,7 +133,7 @@ export default function QuickstartPage() {
         <SectionHeading eyebrow="The two weeks" title="What the build actually looks like." />
         <div className="mt-10 grid gap-5 md:grid-cols-4">
           {[
-            ["Days 1–2", "Scope lock", "We confirm the workflow, the data it may touch (non-sensitive only), the human-review points, and what 'working' means."],
+            ["Days 1–2", "Scope lock", "We confirm the workflow, the tool it runs in (existing tools first, set up in your accounts), the data it may touch (non-sensitive only), the human-review points, and what 'working' means."],
             ["Days 3–7", "Build & first pass", "We build with your real examples — scrubbed where needed — and you react to drafts, not diagrams."],
             ["Days 8–10", "Team testing", "The people who'll run it daily test it. We tune for how your business talks, prices, and decides."],
             ["Days 11–14", "SOP & handoff", "Written SOP, owner walkthrough, and a check-in cadence for two weeks of post-launch adjustment."],

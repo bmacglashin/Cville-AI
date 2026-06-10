@@ -4,6 +4,11 @@ Rules: 5–10/day, every one personalized with a ⟨specific observation⟩ (the
 review, a project sign you drove past). Plain text, no images, no link-stuffing. Send Tue–Thu
 7:00–8:30am — owners read email before the crew arrives. Log every send in `/admin`.
 
+**The positioning line (use it verbatim somewhere in every sequence):** "I'm not selling a
+platform. I help owner-led businesses figure out which workflows are worth improving with AI,
+which tools are safe to use, and what to implement first." Never name specific AI vendors in
+outreach — categories only (see `docs/TOOL_DOCTRINE.md`).
+
 ## Sequence A — cold, design/build & remodeling (primary ICP)
 
 **A1 (day 0) — Subject: `proposals at ⟨Company⟩`**
@@ -14,10 +19,11 @@ review, a project sign you drove past). Plain text, no images, no link-stuffing.
 > Quick question, owner to owner: how long does a proposal take to get out the door right now —
 > and how much of it has to be you?
 >
-> I run Agent Ally, a Charlottesville advisory practice. I do paid AI Operating Audits for
-> owner-led building firms: two weeks, and you know exactly which one workflow is worth
-> automating (often proposals), what it saves, and what to keep away from AI entirely. $950 for
-> my first five local clients; no chatbots, no hype, human review on everything.
+> I run Agent Ally, a Charlottesville advisory practice. I'm not selling a platform. I help
+> owner-led businesses figure out which workflows are worth improving with AI, which tools are
+> safe to use, and what to implement first — starting with a paid two-week AI Operating Audit.
+> $950 for my first five local clients; everything in accounts you own, no chatbots, no hype,
+> human review on everything.
 >
 > Worth a 20-minute call to see if it fits? Either way I'll leave you with something useful.
 > — Ben ⟨site⟩
@@ -26,8 +32,9 @@ review, a project sign you drove past). Plain text, no images, no link-stuffing.
 
 > ⟨Name⟩ — one concrete example and then I'll leave you alone: a typical audit finding for a
 > firm your size is proposal drafting eating 8–10 owner-hours a week. The fix isn't "more AI" —
-> it's one drafting workflow trained on YOUR past projects, where you review and send. That's a
-> two-week build, but only after an audit confirms it's the right first move.
+> it's one drafting workflow built in tools you already own, trained on YOUR past projects,
+> where you review and send. That's a two-week setup, but only after an audit confirms it's the
+> right first move (and which tool is actually safe for your data).
 >
 > I wrote up a sample of what owners get — a one-page weekly ops brief for a fictional
 > design/build firm: ⟨site⟩/demo/ops-brief
@@ -49,8 +56,9 @@ review, a project sign you drove past). Plain text, no images, no link-stuffing.
 
 > ⟨Name⟩ — good to ⟨meet you at the chamber breakfast / be connected by ⟨mutual⟩⟩. As
 > threatened: I've launched Agent Ally — paid AI Operating Audits for owner-led businesses here
-> in town. Two weeks, $950 founding price, and you get a scored map of where AI actually pays
-> in YOUR operation (and what to leave alone — that part's in writing).
+> in town. I'm not selling a platform: two weeks, $950 founding price, and you get a scored map
+> of where AI actually pays in YOUR operation, which tools are safe for your data, and what to
+> leave alone (that part's in writing).
 >
 > ⟨One sentence tying it to something they said: "You mentioned your office manager spends half
 > her day on inquiry email…"⟩
@@ -66,8 +74,9 @@ review, a project sign you drove past). Plain text, no images, no link-stuffing.
 > whoever followed up twice.
 >
 > I run paid AI Operating Audits for owner-led service businesses in Charlottesville — $950
-> founding price, two weeks, and you get a scored plan for fixing exactly that kind of leak
-> (with a human approving every message that goes out — no bots talking to your customers).
+> founding price, two weeks, and you get a scored plan for fixing exactly that kind of leak,
+> built in tools you already own (with a human approving every message that goes out — no bots
+> talking to your customers).
 >
 > Worth 20 minutes? ⟨site⟩/apply or just reply.
 

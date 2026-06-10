@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/audit",
     "/quickstart",
     "/design-build",
-    "/command-center",
+    "/managed-workspace",
     "/about",
     "/founders-note",
     "/faq",

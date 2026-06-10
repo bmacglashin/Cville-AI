@@ -33,11 +33,12 @@ export default async function PortalLayout({ children }: { children: React.React
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Prototype banner — this workspace is a preview of future client delivery, not the offer. */}
+      {/* Permanent prototype banner — this room shares deliverables; it is never the product. */}
       <div className="bg-pine-900 px-4 py-2 text-center text-xs font-medium text-pine-100">
         <FlaskConical className="mr-1.5 inline h-3.5 w-3.5" />
-        Prototype — future client workspace. Your engagement runs through Ben directly; this space
-        previews how deliverables and roadmaps will be shared.
+        Client Delivery Room (prototype) — where we share approved deliverables, your roadmap, and
+        operating notes. Not a standalone AI platform; it does not connect to your business
+        systems unless separately scoped.
       </div>
 
       <header className="border-b border-border bg-card">

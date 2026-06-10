@@ -80,10 +80,11 @@ export default function PrivacyPage() {
             <h2 className="font-display text-2xl text-ink">AI processing</h2>
             <p className="mt-4">
               When AI models are used during an engagement, they are used on approved, non-sensitive
-              content, with human review of outputs. We will tell you which providers are involved
-              in your specific engagement before any of your content touches them, and commercial
-              API tiers with no-training terms are used. No autonomous systems act on your business
-              or your customers.
+              content, with human review of outputs. Tools are set up in accounts your business
+              owns, we will tell you which providers are involved in your specific engagement
+              before any of your content touches them, and commercial tiers with no-training terms
+              are used. No AI system acts on your business or your customers without a person
+              reviewing it.
             </p>
           </section>
 

@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 const NAV = [
   { href: "/audit", label: "Operating Audit" },
   { href: "/quickstart", label: "Workflow Quickstart" },
+  { href: "/managed-workspace", label: "Managed Workspace" },
   { href: "/design-build", label: "For Design/Build" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },

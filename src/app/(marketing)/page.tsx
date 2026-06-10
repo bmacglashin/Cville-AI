@@ -17,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Section, SectionHeading } from "@/components/marketing/section";
 import { CtaBand } from "@/components/marketing/cta-band";
+import { ToolCategoriesSection } from "@/components/marketing/tool-categories";
 import {
   SITE,
   OFFERS,
@@ -24,13 +25,14 @@ import {
   WHO_FOR,
   NOT_FOR,
   PIPELINE_PUBLIC,
+  POSITIONING,
 } from "@/lib/content";
 import { formatCents } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Agent Ally — Practical AI implementation for Charlottesville owner-led businesses",
+  title: "Agent Ally — a tool-agnostic AI operating partner for owner-led businesses",
   description:
-    "Start with a paid AI Operating Audit. Leave with a prioritized roadmap, a data-risk assessment, and one practical workflow worth implementing. Founder-led, Charlottesville-based.",
+    "Start with a paid AI Operating Audit. We recommend the right client-owned tool stack, configure safe workflows, document the system, train your team, and stay on to operate it. Founder-led, Charlottesville-based.",
 };
 
 const PAIN_POINTS = [
@@ -68,7 +70,7 @@ export default function HomePage() {
               Charlottesville &amp; Albemarle County · Founding cohort: 5 clients
             </Badge>
             <h1 className="font-display text-4xl leading-[1.08] text-ink sm:text-5xl lg:text-6xl">
-              Practical AI implementation for Charlottesville owner-led businesses.
+              A tool-agnostic AI operating partner for Charlottesville owner-led businesses.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
               {SITE.subhead}
@@ -100,7 +102,7 @@ export default function HomePage() {
         <div className="mx-auto grid w-full max-w-6xl gap-6 px-5 py-8 sm:grid-cols-3 sm:px-8">
           {[
             ["Audit first", "Judgment before tools. Paid, scoped, and useful with or without us."],
-            ["One workflow at a time", "No platforms, no rip-and-replace. Working software in two weeks."],
+            ["Existing tools first", "Your accounts, your data. We use the right tool, not one tool — custom builds only when the business case is clear."],
             ["Human review built in", "Nothing customer-facing ships without a person in the loop."],
           ].map(([title, body]) => (
             <div key={title} className="flex gap-3">
@@ -188,7 +190,7 @@ export default function HomePage() {
                 <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{offer.priceNote}</p>
                 <Link href={offer.href} className="mt-5 block">
                   <Button variant={i === 0 ? "primary" : "outline"} className="w-full">
-                    {i === 0 ? "About the audit" : `About ${offer.name.split(" ")[1] ?? "it"}`}
+                    {offer.ctaLabel}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
@@ -239,6 +241,9 @@ export default function HomePage() {
           </div>
         </Section>
       </div>
+
+      {/* ── Tool-agnostic doctrine ─────────────────────────────── */}
+      <ToolCategoriesSection />
 
       {/* ── Who it's for / not for ─────────────────────────────── */}
       <Section>
@@ -295,8 +300,9 @@ export default function HomePage() {
                 <ShieldCheck className="mb-2 h-8 w-8 text-pine-700" />
                 <CardTitle>Our data stance</CardTitle>
                 <CardDescription className="leading-relaxed">
-                  We rank your data by sensitivity before anything is built, exclude regulated and
-                  sensitive data from early work, and require human review on anything
+                  {POSITIONING.ownership} We rank your data by sensitivity before anything is
+                  built, exclude regulated and sensitive data from early work, vet every tool
+                  against our data-risk framework, and require human review on anything
                   customer-facing. If a workflow isn't safe to automate yet, the audit says so —
                   that answer is part of what you're paying for.
                 </CardDescription>

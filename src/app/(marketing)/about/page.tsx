@@ -19,6 +19,10 @@ const PRINCIPLES = [
     body: "Most local businesses don't need more AI tools. They need someone who can look at the operation, the data, and the risk profile and say: this, not that, in this order. That judgment is the product — the software is just how it ships.",
   },
   {
+    title: "The right tool, not one tool",
+    body: "We're tool-agnostic on purpose. Everything is set up in accounts your business owns — your logins, your data — and we recommend from the whole market. Existing tools first; custom builds only when ROI, data risk, scope, and budget make the case.",
+  },
+  {
     title: "Paid from day one",
     body: "We start with a paid audit because free assessments are sales theater. When you pay for the work, you get the real answer — including 'don't automate this yet.'",
   },
@@ -62,7 +66,7 @@ export default function AboutPage() {
       <Section>
         <SectionHeading
           eyebrow="Operating principles"
-          title="Six things we believe enough to be constrained by."
+          title="Seven things we believe enough to be constrained by."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {PRINCIPLES.map((p) => (
