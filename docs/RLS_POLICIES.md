@@ -1,9 +1,12 @@
 # Row Level Security Policies
 
-Source of truth: `supabase/migrations/20260610120100_rls.sql`.
+Source of truth: `supabase/migrations/20260610120100_rls.sql` (core) and
+`supabase/migrations/20260610130000_operating_layer.sql` (operating layer).
 Static tests in `tests/migrations.test.ts` verify: RLS enabled on every table, every table has
-policies, anon can never read `leads`, `activity_events` is append-only, and no service-role
-key appears in `src/`.
+policies, anon can never read `leads`, `activity_events` is append-only, no service-role key
+appears in `src/`, the doctrine tables (`tool_vendors`, `workflow_playbooks`) are admin-only,
+member reads of `stack_recommendations`/`audit_readouts` are gated on `status='shared'` /
+`client_visible=true`, and anon touches none of the operating layer.
 
 ## Principles
 
@@ -45,6 +48,12 @@ key appears in `src/`.
 | `comments` | — | read own org; insert as self in own org; delete own | all |
 | `service_packages` | read active | read active | all |
 | `activity_events` | — | insert as self (no read) | read + insert; **no update/delete for anyone** |
+| `tool_vendors` | — | — (internal doctrine, never client-readable) | all |
+| `workflow_playbooks` | — | — (internal method, never client-readable) | all |
+| `client_tool_instances` | — | read own org | all (writes) |
+| `stack_recommendations` | — | read own org **only when `status='shared'`** | all (writes) |
+| `stack_recommendation_items` | — | read via parent **shared** recommendation | all (writes) |
+| `audit_readouts` | — | read own org **only when `client_visible=true`** | all (writes) |
 
 ## Notable design choices
 
@@ -52,6 +61,13 @@ key appears in `src/`.
   public form can't be used to enumerate other applicants.
 - **`discovery_notes` and `contacts` are admin-only** even for members of the org they
   reference: raw call notes are the advisor's working material, not a client deliverable.
+- **The vendor catalog and playbook library are the method — admin-only, always.** Clients see
+  vendor names only where the advisor deliberately puts them (readout markdown, per the naming
+  rules in `docs/TOOL_DOCTRINE.md`); `client_tool_instances.tool_name` carries a client-safe
+  label so the portal never needs to join the catalog.
+- **Sharing is an explicit act:** recommendations become member-readable only at
+  `status='shared'`; readouts only at `client_visible=true`. Drafts are invisible by policy,
+  not by UI.
 - **Intake children are insert-only for clients** (no update/delete): submissions are a record.
   Corrections flow through messages → admin edits.
 - **`comments` insert requires `author_id = auth.uid()`** — no impersonation even within an org.

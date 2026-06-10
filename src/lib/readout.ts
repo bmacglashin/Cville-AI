@@ -89,8 +89,23 @@ function tableRow(cells: (string | number | null | undefined)[]): string {
   return `| ${cells.map((c) => String(c ?? "—").replace(/\|/g, "/")).join(" | ")} |`;
 }
 
+/** Client-friendly category labels (mirrors the public TOOL_CATEGORIES naming). */
+const CATEGORY_LABELS: Record<string, string> = {
+  foundational_workspace: "Foundational workspace",
+  llm_assistant: "Business-grade AI assistant",
+  knowledge_base: "Knowledge base",
+  automation: "Automation platform",
+  messaging_assistant: "Messaging-native assistant",
+  agent_workspace: "Advanced agent workspace",
+  custom_app: "Custom build",
+};
+
+function categoryLabel(category: string): string {
+  return CATEGORY_LABELS[category] ?? titleCase(category);
+}
+
 function itemLabel(item: ReadoutItemInput): string {
-  return item.vendorName ?? `${titleCase(item.tool_category)} (specific tool selected case-by-case)`;
+  return item.vendorName ?? `${categoryLabel(item.tool_category)} (specific tool selected case-by-case)`;
 }
 
 export function generateReadoutMarkdown(input: ReadoutInput): string {

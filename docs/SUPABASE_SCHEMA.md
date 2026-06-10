@@ -16,12 +16,20 @@ Regenerate TypeScript types after schema changes:
 | `work_status` | `backlog`, `advisor_review`, `client_review`, `in_progress`, `done` |
 | `task_status` | `todo`, `in_progress`, `blocked`, `done` |
 | `proposal_status` | `draft`, `sent`, `accepted`, `declined` |
-| `data_sensitivity` | `public`, `internal`, `confidential`, `regulated` |
+| `data_sensitivity` | `public`, `internal`, `confidential`, `regulated`, `prohibited` |
 | `roadmap_phase` | `now`, `next`, `later` |
 | `document_status` | `listed`, `uploaded`, `reviewed` |
 | `call_type` | `fit_call`, `discovery`, `owner_interview`, `working_session`, `other` |
+| `tool_category` | `foundational_workspace`, `llm_assistant`, `knowledge_base`, `automation`, `messaging_assistant`, `agent_workspace`, `project_management`, `crm`, `communication`, `custom_app`, `other` |
+| `approval_status` | `approved`, `conditional`, `experimental`, `internal_only`, `rejected`, `needs_review` |
+| `delivery_mode` | `existing_tools`, `managed_ai_workspace`, `point_solution`, `custom_glue`, `custom_app`, `decline_or_defer` |
+| `recommendation_type` | `default`, `optional`, `premium`, `rejected`, `defer` |
 
-## Tables (22)
+`data_sensitivity` is the **single** classification taxonomy: `prohibited` (added by the
+operating-layer migration) marks data classes that must never enter any tool or workflow —
+the safety rails in `src/lib/safety.ts` force defer/decline on `regulated` and `prohibited`.
+
+## Tables (28)
 
 ### Identity & tenancy
 
@@ -74,6 +82,41 @@ Regenerate TypeScript types after schema changes:
 - **`service_packages`** — the product ladder; `founding_price_cents` + `standard_price_cents`,
   `active` flag, publicly readable when active. Seeded with the three offers.
 
+### Operating layer (migration `20260610130000_operating_layer.sql`)
+
+- **`tool_vendors`** — the vetted tool catalog (ADMIN-ONLY). Identity (name, unique slug,
+  `category tool_category`), doctrine (`approval_status`, `public_copy_allowed`,
+  `client_owned_account_required`, `white_label_allowed bool null`), vetting fields mirroring
+  `docs/VENDOR_VETTING_CHECKLIST.md` (`dpa_status`, `no_training_status`,
+  `admin_controls_status`, `export_path_status`, `support_burden`, `longevity_notes`),
+  `max_data_sensitivity` ceiling, `prohibited_use_cases jsonb`, `source_links jsonb`,
+  candid `internal_notes` vs. shareable `public_notes`, and review cadence
+  (`last_reviewed_at` / `next_review_at`).
+- **`workflow_playbooks`** — the reusable method library (ADMIN-ONLY). `steps jsonb` is an
+  **ordered array** of `{title, description, owner_role, tool_category, human_review,
+  output_artifact}` — deliberately no separate steps table. Plus delivery defaults
+  (`default_delivery_mode`, `default_tool_categories jsonb`, complexity check
+  low/medium/high/custom), `max_data_sensitivity`, economics (`est_setup_hours_min/max`,
+  `price_min/max_cents`, `retainer_fit` 1–5), `human_review_required` (default true),
+  `success_metrics jsonb`, `active`.
+- **`client_tool_instances`** — tools a client business actually runs. `tool_vendor_id`
+  nullable (many client tools aren't in the AI catalog) plus a denormalized `tool_name` so the
+  portal can display the client's own stack without piercing the admin-only catalog;
+  `owner_type` check (`client_owned`/`agent_ally_managed`/`unknown`), `data_sensitivity`,
+  free-text `status`, `monthly_cost_cents`, `review_date`, notes.
+- **`stack_recommendations`** — a recommended operating stack per client: linked
+  `audit_intake_id`, `delivery_mode`, `overall_data_sensitivity`, `assumptions jsonb`,
+  `excluded_use_cases jsonb`, setup/retainer price ranges (cents), `status` check
+  draft/reviewed/**shared** (clients only ever see shared), `created_by`.
+- **`stack_recommendation_items`** — the stack lines, including the deliberate no's:
+  `recommendation_type` covers `rejected`/`defer` WITH `reason`; `tool_vendor_id` nullable
+  (category-level recommendations are first-class), `tool_category`, `use_case`,
+  `data_boundary`, `monthly_cost_cents`, `sort_order`. Reads follow the parent recommendation.
+- **`audit_readouts`** — the readout document: `generated_markdown` (deterministically
+  assembled by `src/lib/readout.ts`, advisor-edited), links to intake + stack recommendation,
+  `status` check draft/reviewed/sent/archived, `client_visible bool` (clients only ever see
+  visible rows), `created_by`, `reviewed_at`.
+
 ## Functions & triggers
 
 | Object | Kind | Purpose |
@@ -90,7 +133,10 @@ Regenerate TypeScript types after schema changes:
 
 Every FK used in queries is indexed (`*_organization_idx`, `*_intake_idx`,
 `leads_status_idx`, `leads_created_at_idx`, `organizations_pipeline_stage_idx`,
-`activity_events_created_at_idx`, `comments_entity_idx`).
+`activity_events_created_at_idx`, `comments_entity_idx`; operating layer adds
+`tool_vendors_category/approval_status`, `workflow_playbooks_active`, and FK indexes on
+`client_tool_instances`, `stack_recommendations`, `stack_recommendation_items`,
+`audit_readouts`).
 
 ## Storage
 
