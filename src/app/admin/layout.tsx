@@ -60,7 +60,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             </nav>
           </div>
           <div className="flex items-center gap-4">
-            <span className="hidden text-xs text-pine-100/70 sm:inline">Internal — Agent Ally ops</span>
+            <span className="hidden text-xs text-pine-100/70 sm:inline">Internal — Copp Oak Advisory ops</span>
             <form action={signOut}>
               <Button variant="light" size="sm" type="submit">
                 Sign out

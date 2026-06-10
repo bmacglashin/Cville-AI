@@ -22,7 +22,7 @@ export async function submitAuditApplication(input: AuditApplication): Promise<A
     return {
       ok: false,
       error:
-        "Applications aren't connected yet. Please email ben@agentally.co directly — same five-minute conversation.",
+        "Applications aren't connected yet. Please email ben@coppoakadvisory.com directly — same five-minute conversation.",
     };
   }
 
@@ -44,7 +44,7 @@ export async function submitAuditApplication(input: AuditApplication): Promise<A
 
   if (error) {
     console.error("[apply] insert failed:", error.message);
-    return { ok: false, error: "Something went wrong saving your application. Please email ben@agentally.co." };
+    return { ok: false, error: "Something went wrong saving your application. Please email ben@coppoakadvisory.com." };
   }
 
   await notifyAdminOfApplication({

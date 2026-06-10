@@ -57,7 +57,7 @@ All four must pass clean.
 - [ ] Org pipeline stage advanced to `intake_submitted` (check `/admin`)
 - [ ] Intake + children visible in `/portal/intake` and in admin client page
 
-## Portal (as `client@agentally.test`)
+## Portal (as `client@coppoak.test`)
 
 - [ ] "Client Delivery Room (prototype)" banner visible on every portal page, incl. the
       "does not connect to your business systems" line
@@ -72,7 +72,7 @@ All four must pass clean.
 - [ ] Messages: client can post; appears in thread (right-aligned)
 - [ ] **Isolation:** client sees ONLY Blue Ridge data; `/admin` redirects them to `/portal`
 
-## Admin (as `admin@agentally.test`)
+## Admin (as `admin@coppoak.test`)
 
 - [ ] Pipeline board: Blue Ridge in "Audit Delivered"; counts in header chips
 - [ ] Leads: status select saves; "Convert to client" creates org + contact and links lead

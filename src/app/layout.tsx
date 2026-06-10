@@ -20,32 +20,32 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "Agent Ally — AI operating systems for serious local businesses",
-    template: "%s | Agent Ally",
+    default: "Copp Oak Advisory — a tool-agnostic AI operating partner for owner-led businesses",
+    template: "%s | Copp Oak Advisory",
   },
   description:
-    "Charlottesville-based AI advisory and implementation. We start with a paid AI Operating Audit, then advise, implement, and operate practical AI systems for owner-led businesses.",
+    "Charlottesville-based AI advisory and implementation. We start with a paid AI Operating Audit, then recommend the right client-owned tool stack, configure safe workflows, train your team, and stay on to operate it.",
   keywords: [
     "AI consulting Charlottesville",
     "AI audit",
     "AI implementation",
     "small business AI",
     "AI advisory Virginia",
-    "Agent Ally",
+    "Copp Oak Advisory",
   ],
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Agent Ally",
-    title: "Agent Ally — AI operating systems for serious local businesses",
+    siteName: "Copp Oak Advisory",
+    title: "Copp Oak Advisory — a tool-agnostic AI operating partner for owner-led businesses",
     description:
-      "Audit first. Then advise, implement, and operate. Practical AI for Charlottesville's owner-led businesses.",
+      "Audit first. Existing tools first. Your accounts, your data, our operating method — practical AI for Charlottesville's owner-led businesses.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Agent Ally — AI operating systems for serious local businesses",
+    title: "Copp Oak Advisory — a tool-agnostic AI operating partner for owner-led businesses",
     description:
-      "Audit first. Then advise, implement, and operate. Practical AI for Charlottesville's owner-led businesses.",
+      "Audit first. Existing tools first. Your accounts, your data, our operating method — practical AI for Charlottesville's owner-led businesses.",
   },
 };
 

@@ -143,7 +143,7 @@ export function generateReadoutMarkdown(input: ReadoutInput): string {
 
   /* ── Title ── */
   push(`# AI Operating Audit Readout — ${organization.name}`, "");
-  push(`**Prepared by:** Ben, Agent Ally · **Date:** ${fmtDate(today)}`);
+  push(`**Prepared by:** Ben, Copp Oak Advisory · **Date:** ${fmtDate(today)}`);
   push(
     "**Confidential** — prepared for the owner. Contains no regulated data by design.",
     "",
@@ -373,7 +373,7 @@ export function generateReadoutMarkdown(input: ReadoutInput): string {
   for (const a of recommendation?.assumptions ?? []) push(`- ${a}`);
   push(
     "- Every tool account is owned and administered by your business.",
-    "- Agent Ally stores no passwords or financial credentials.",
+    "- Copp Oak Advisory stores no passwords or financial credentials.",
     "- Pricing assumes the scope above; changes are agreed in writing before work shifts.",
     ""
   );

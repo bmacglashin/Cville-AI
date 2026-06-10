@@ -3,9 +3,9 @@
 **The proprietary asset is the METHOD** — audit methodology, opportunity scoring, data-risk
 framework, vendor vetting, workflow playbooks, prompt library, QA, operating cadence — never a
 platform, never the portal, never a tool. This document is the internal rulebook for how tools
-enter, live in, and leave Agent Ally engagements.
+enter, live in, and leave Copp Oak Advisory engagements.
 
-Positioning it serves: *"Agent Ally is a tool-agnostic AI operating partner for owner-led
+Positioning it serves: *"Copp Oak Advisory is a tool-agnostic AI operating partner for owner-led
 businesses. We audit the business, recommend the right client-owned tool stack, configure safe
 workflows, document the system, train the team, and stay on to operate and improve it. Existing
 tools first. Custom builds only when ROI, data risk, scope, and budget justify it."*
@@ -13,7 +13,7 @@ tools first. Custom builds only when ROI, data risk, scope, and budget justify i
 ## 1. Client-owned first — always
 
 - Every tool is set up in **accounts the client's business owns**: their logins, their billing
-  relationship, their data, their admin console. Agent Ally holds delegated/admin access only
+  relationship, their data, their admin console. Copp Oak Advisory holds delegated/admin access only
   where the engagement requires it, documented in the handoff record.
 - We never resell, sublicense, white-label, or mark up software. The client pays vendors
   directly. Our fee is for the method, configuration, documentation, training, and operation.

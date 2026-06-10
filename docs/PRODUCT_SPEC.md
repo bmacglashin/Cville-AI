@@ -1,10 +1,10 @@
-# Product Specification — Agent Ally MVP + Operating Layer v1
+# Product Specification — Copp Oak Advisory MVP + Operating Layer v1
 
 **Status:** Built (validation phase) · **Last updated:** June 2026
 
 ## 1. Strategy in one paragraph
 
-Agent Ally is a **tool-agnostic AI operating partner** for owner-led businesses: we audit the
+Copp Oak Advisory is a **tool-agnostic AI operating partner** for owner-led businesses: we audit the
 business, recommend the right client-owned tool stack, configure safe workflows, document the
 system, train the team, and stay on to operate and improve it. Existing tools first; custom
 builds only when ROI, data risk, scope, and budget justify it. Validation runs in

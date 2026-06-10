@@ -19,7 +19,7 @@ outreach — categories only (see `docs/TOOL_DOCTRINE.md`).
 > Quick question, owner to owner: how long does a proposal take to get out the door right now —
 > and how much of it has to be you?
 >
-> I run Agent Ally, a Charlottesville advisory practice. I'm not selling a platform. I help
+> I run Copp Oak Advisory, a Charlottesville advisory practice. I'm not selling a platform. I help
 > owner-led businesses figure out which workflows are worth improving with AI, which tools are
 > safe to use, and what to implement first — starting with a paid two-week AI Operating Audit.
 > $950 for my first five local clients; everything in accounts you own, no chatbots, no hype,
@@ -55,7 +55,7 @@ outreach — categories only (see `docs/TOOL_DOCTRINE.md`).
 **B1 — Subject: `the AI audit practice I mentioned`**
 
 > ⟨Name⟩ — good to ⟨meet you at the chamber breakfast / be connected by ⟨mutual⟩⟩. As
-> threatened: I've launched Agent Ally — paid AI Operating Audits for owner-led businesses here
+> threatened: I've launched Copp Oak Advisory — paid AI Operating Audits for owner-led businesses here
 > in town. I'm not selling a platform: two weeks, $950 founding price, and you get a scored map
 > of where AI actually pays in YOUR operation, which tools are safe for your data, and what to
 > leave alone (that part's in writing).

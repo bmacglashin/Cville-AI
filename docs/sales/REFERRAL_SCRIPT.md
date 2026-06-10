@@ -42,7 +42,7 @@ chamber breakfasts.
 >
 > ⟨Name⟩ — as promised, the forwardable version:
 >
-> I run Agent Ally, a Charlottesville AI advisory practice for owner-led businesses. I start
+> I run Copp Oak Advisory, a Charlottesville AI advisory practice for owner-led businesses. I start
 > with a paid AI Operating Audit ($950 founding price): two weeks, a 90-minute owner interview,
 > and a written answer to "where would AI actually help my business — and where would it waste
 > money or create risk." Includes a scored use-case map and a 30-day roadmap. No hype, no

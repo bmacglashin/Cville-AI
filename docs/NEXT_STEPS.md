@@ -39,7 +39,7 @@ delivery faster, not to grow public platform surface.
 
 Hosted Supabase project + `db push` · domain + Vercel · Calendly link · Resend domain + key ·
 Stripe Payment Link ($950) · real admin account promotion · live contact email replacing
-`ben@agentally.co` placeholder · entity/MSA/insurance before first paid engagement · verify
+`ben@coppoakadvisory.com` placeholder · entity/MSA/insurance before first paid engagement · verify
 vendor terms for every catalog row still marked `needs_review` (see
 `docs/VENDOR_VETTING_CHECKLIST.md`) before recommending those tools to a paying client.
 

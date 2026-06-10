@@ -1,4 +1,4 @@
-# Agent Ally — Founding Offer (One-Pager)
+# Copp Oak Advisory — Founding Offer (One-Pager)
 
 *Print/PDF this for coffee meetings. Keep it to one page.*
 
@@ -64,4 +64,4 @@ delivers everything.
 ---
 
 **Next step:** 5-minute application at **[site]/apply** → free 20-minute fit call →
-we both decide. · **ben@agentally.co**
+we both decide. · **ben@coppoakadvisory.com**

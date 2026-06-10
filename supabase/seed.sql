@@ -1,5 +1,5 @@
 -- ============================================================================
--- Agent Ally — LOCAL DEVELOPMENT SEED
+-- Copp Oak Advisory — LOCAL DEVELOPMENT SEED
 --
 -- Everything below is FICTIONAL DUMMY DATA for local testing and demos.
 -- "Blue Ridge Custom Builders" is an invented design/build company.
@@ -7,8 +7,8 @@
 -- known password are created).
 --
 -- Local logins after `supabase db reset`:
---   admin:  admin@agentally.test  / password123
---   client: client@agentally.test / password123
+--   admin:  admin@coppoak.test  / password123
+--   client: client@coppoak.test / password123
 -- ============================================================================
 
 -- ---------------------------------------------------------------------------
@@ -60,7 +60,7 @@ values
     '00000000-0000-0000-0000-000000000000',
     '11111111-1111-1111-1111-111111111111',
     'authenticated', 'authenticated',
-    'admin@agentally.test',
+    'admin@coppoak.test',
     extensions.crypt('password123', extensions.gen_salt('bf')),
     now(),
     '{"provider":"email","providers":["email"]}',
@@ -71,7 +71,7 @@ values
     '00000000-0000-0000-0000-000000000000',
     '22222222-2222-2222-2222-222222222222',
     'authenticated', 'authenticated',
-    'client@agentally.test',
+    'client@coppoak.test',
     extensions.crypt('password123', extensions.gen_salt('bf')),
     now(),
     '{"provider":"email","providers":["email"]}',
@@ -86,14 +86,14 @@ values
     gen_random_uuid(),
     '11111111-1111-1111-1111-111111111111',
     '11111111-1111-1111-1111-111111111111',
-    '{"sub":"11111111-1111-1111-1111-111111111111","email":"admin@agentally.test","email_verified":true}',
+    '{"sub":"11111111-1111-1111-1111-111111111111","email":"admin@coppoak.test","email_verified":true}',
     'email', now(), now(), now()
   ),
   (
     gen_random_uuid(),
     '22222222-2222-2222-2222-222222222222',
     '22222222-2222-2222-2222-222222222222',
-    '{"sub":"22222222-2222-2222-2222-222222222222","email":"client@agentally.test","email_verified":true}',
+    '{"sub":"22222222-2222-2222-2222-222222222222","email":"client@coppoak.test","email_verified":true}',
     'email', now(), now(), now()
   );
 
@@ -124,7 +124,7 @@ values ('33333333-3333-3333-3333-333333333333', '22222222-2222-2222-2222-2222222
 
 insert into public.contacts (organization_id, full_name, email, phone, role_title, is_primary, notes)
 values
-  ('33333333-3333-3333-3333-333333333333', 'Dana Whitfield', 'client@agentally.test', '434-555-0142', 'Owner / unofficial COO', true, 'Prefers early-morning calls. Referral from chamber breakfast.'),
+  ('33333333-3333-3333-3333-333333333333', 'Dana Whitfield', 'client@coppoak.test', '434-555-0142', 'Owner / unofficial COO', true, 'Prefers early-morning calls. Referral from chamber breakfast.'),
   ('33333333-3333-3333-3333-333333333333', 'Marcus Lee', 'marcus@example.com', null, 'Production Manager', false, 'Skeptical of AI; cares about handoff quality.');
 
 -- ---------------------------------------------------------------------------
@@ -265,7 +265,7 @@ insert into public.deliverables (organization_id, title, description, deliverabl
 
 insert into public.tasks (organization_id, title, description, status, owner, due_date, sort_order) values
   ('33333333-3333-3333-3333-333333333333', 'Review Quickstart proposal', 'Decide within credit window (14 days).', 'in_progress', 'client', (current_date + 5)::date, 1),
-  ('33333333-3333-3333-3333-333333333333', 'Send 20 past proposals for scrubbing', 'Export from Google Docs; Agent Ally scrubs client names before any AI use.', 'todo', 'client', (current_date + 7)::date, 2),
+  ('33333333-3333-3333-3333-333333333333', 'Send 20 past proposals for scrubbing', 'Export from Google Docs; Copp Oak Advisory scrubs client names before any AI use.', 'todo', 'client', (current_date + 7)::date, 2),
   ('33333333-3333-3333-3333-333333333333', 'Prepare corpus scrub checklist', 'PII scrub procedure for proposal corpus.', 'todo', 'advisor', (current_date + 7)::date, 3);
 
 insert into public.comments (organization_id, author_id, entity_type, body) values
@@ -457,7 +457,7 @@ values
     'd0a80001-0000-4000-8000-00000000000c',
     'Advanced agent workspace (e.g. Hermes)', 'advanced-agent-workspace', 'agent_workspace', 'internal_only',
     'Heavy-duty agentic work environment for complex multi-step AI work.',
-    'INTERNAL: Agent Ally delivery cockpit; premium pilot demos inside paid engagements.',
+    'INTERNAL: Copp Oak Advisory delivery cockpit; premium pilot demos inside paid engagements.',
     false, true, false,
     'needs_review', 'needs_review',
     'needs_review — single-operator model today', 'needs_review',
@@ -786,7 +786,7 @@ values
     '44444444-4444-4444-4444-444444444444',
     'f1a80001-0000-4000-8000-000000000001',
     'AI Operating Audit Readout — Blue Ridge Custom Builders',
-    E'# AI Operating Audit Readout — Blue Ridge Custom Builders\n\n**Prepared by:** Ben, Agent Ally\n**Status:** Sent — demo seed document (FICTIONAL data)\n\nYour accounts. Your data. Our operating method.\n\n## Executive Summary\n\nBlue Ridge Custom Builders is a $6M design/build firm whose owner, Dana, is the bottleneck by design: pricing judgment, proposal drafting, and ~30 staff questions a day all route through her. The audit found two workflows worth implementing now — proposal drafting and an internal SOP assistant — both of which run on tools the business already owns. Nothing in this plan requires new platforms, and nothing customer-facing ships without Dana''s review.\n\n## What We Heard\n\n- Get proposals out faster; stop being the answer desk; make handoffs less owner-dependent.\n- A couple of PMs use AI informally on personal accounts. No policy, no consistency.\n- Busy season starts in 8 weeks — quick wins matter.\n\n## Owner Bottlenecks\n\n| Bottleneck | Severity | Est. hrs/wk |\n| --- | --- | --- |\n| Proposal & estimate assembly | 5/5 | 9 |\n| Repeated staff questions | 4/5 | 8 |\n| Sales-to-production handoffs | 4/5 | 4 |\n| Customer follow-up | 3/5 | 5 |\n\n## Data Risk Map\n\n| Data source | Classification | AI use |\n| --- | --- | --- |\n| Past proposals (Docs) | internal | Allowed after client-name scrub |\n| SOPs & checklists (Drive) | internal | Allowed |\n| Client contracts | confidential | Excluded |\n| Employee records | regulated | Excluded entirely — out of scope |\n\n## Recommended Operating Stack\n\nExisting tools first: Google Workspace stays the foundation; one business-grade AI assistant (client-owned, no-training terms verified at kickoff) covers proposal drafting and SOP Q&A. Light automation for inquiry triage is optional in phase 2. A messaging-native assistant was REJECTED (unverified consumer terms); a custom estimating app is DEFERRED (fails the ROI gate today).\n\n## What We Recommend First\n\n1. Proposal/Estimate Drafting Assistant — highest ROI; corpus needs a scrub pass first.\n2. Internal SOP Assistant — low risk, fast win; gap report becomes the SOP backlog.\n\n## What We Do NOT Recommend\n\n- Customer-facing chat or auto-sent email — human review is the rule, not a phase.\n- Custom estimating application — deferred until proposal volume proves the case.\n- Anything touching employee records — regulated, excluded entirely.\n\n## Human-Review Requirements\n\nEvery proposal is reviewed and sent by Dana. SOP assistant answers only from the approved corpus. Inquiry triage (if added) drafts only — auto-send stays off.\n\n## Next Step\n\nReply within 14 days to schedule the Quickstart kickoff; your $500 audit credit applies.\n',
+    E'# AI Operating Audit Readout — Blue Ridge Custom Builders\n\n**Prepared by:** Ben, Copp Oak Advisory\n**Status:** Sent — demo seed document (FICTIONAL data)\n\nYour accounts. Your data. Our operating method.\n\n## Executive Summary\n\nBlue Ridge Custom Builders is a $6M design/build firm whose owner, Dana, is the bottleneck by design: pricing judgment, proposal drafting, and ~30 staff questions a day all route through her. The audit found two workflows worth implementing now — proposal drafting and an internal SOP assistant — both of which run on tools the business already owns. Nothing in this plan requires new platforms, and nothing customer-facing ships without Dana''s review.\n\n## What We Heard\n\n- Get proposals out faster; stop being the answer desk; make handoffs less owner-dependent.\n- A couple of PMs use AI informally on personal accounts. No policy, no consistency.\n- Busy season starts in 8 weeks — quick wins matter.\n\n## Owner Bottlenecks\n\n| Bottleneck | Severity | Est. hrs/wk |\n| --- | --- | --- |\n| Proposal & estimate assembly | 5/5 | 9 |\n| Repeated staff questions | 4/5 | 8 |\n| Sales-to-production handoffs | 4/5 | 4 |\n| Customer follow-up | 3/5 | 5 |\n\n## Data Risk Map\n\n| Data source | Classification | AI use |\n| --- | --- | --- |\n| Past proposals (Docs) | internal | Allowed after client-name scrub |\n| SOPs & checklists (Drive) | internal | Allowed |\n| Client contracts | confidential | Excluded |\n| Employee records | regulated | Excluded entirely — out of scope |\n\n## Recommended Operating Stack\n\nExisting tools first: Google Workspace stays the foundation; one business-grade AI assistant (client-owned, no-training terms verified at kickoff) covers proposal drafting and SOP Q&A. Light automation for inquiry triage is optional in phase 2. A messaging-native assistant was REJECTED (unverified consumer terms); a custom estimating app is DEFERRED (fails the ROI gate today).\n\n## What We Recommend First\n\n1. Proposal/Estimate Drafting Assistant — highest ROI; corpus needs a scrub pass first.\n2. Internal SOP Assistant — low risk, fast win; gap report becomes the SOP backlog.\n\n## What We Do NOT Recommend\n\n- Customer-facing chat or auto-sent email — human review is the rule, not a phase.\n- Custom estimating application — deferred until proposal volume proves the case.\n- Anything touching employee records — regulated, excluded entirely.\n\n## Human-Review Requirements\n\nEvery proposal is reviewed and sent by Dana. SOP assistant answers only from the approved corpus. Inquiry triage (if added) drafts only — auto-send stays off.\n\n## Next Step\n\nReply within 14 days to schedule the Quickstart kickoff; your $500 audit credit applies.\n',
     'sent', true,
     '11111111-1111-1111-1111-111111111111',
     now() - interval '3 days'

@@ -6,7 +6,7 @@
  */
 
 export const SITE = {
-  name: "Agent Ally",
+  name: "Copp Oak Advisory",
   tagline: "A tool-agnostic AI operating partner for Charlottesville owner-led businesses.",
   subhead:
     "We audit your business, recommend the right client-owned tool stack, configure safe workflows, document the system, train your team, and stay on to operate and improve it. Existing tools first — custom builds only when the business case is clear.",
@@ -14,7 +14,7 @@ export const SITE = {
   secondaryCta: "See example workflows",
   city: "Charlottesville",
   region: "Charlottesville & Albemarle County, Virginia",
-  email: "ben@agentally.co", // placeholder — update when domain email is live
+  email: "ben@coppoakadvisory.com", // placeholder — update when domain email is live
 };
 
 /**
@@ -25,7 +25,7 @@ export const SITE = {
  */
 export const POSITIONING = {
   statement:
-    "Agent Ally is a tool-agnostic AI operating partner for owner-led businesses. We audit the business, recommend the right client-owned tool stack, configure safe workflows, document the system, train the team, and stay on to operate and improve it.",
+    "Copp Oak Advisory is a tool-agnostic AI operating partner for owner-led businesses. We audit the business, recommend the right client-owned tool stack, configure safe workflows, document the system, train the team, and stay on to operate and improve it.",
   ownership: "Your accounts. Your data. Our operating method.",
   existingFirst: "Existing tools first. Custom builds only when the business case is clear.",
   rightTool: "We use the right tool, not one tool.",
@@ -302,7 +302,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "Are you an agency? Will work be outsourced?",
-    a: "No. Agent Ally is founder-led. Ben runs every audit, every interview, and every implementation personally during the founding period. That's why the founding cohort is capped at five clients.",
+    a: "No. Copp Oak Advisory is founder-led. Ben runs every audit, every interview, and every implementation personally during the founding period. That's why the founding cohort is capped at five clients.",
   },
   {
     q: "What do you charge after the founding period?",

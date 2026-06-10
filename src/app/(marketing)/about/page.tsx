@@ -8,9 +8,9 @@ import { CtaBand } from "@/components/marketing/cta-band";
 import { RISK_BOUNDARIES } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "About — why Agent Ally exists",
+  title: "About — why Copp Oak Advisory exists",
   description:
-    "Agent Ally is a founder-led AI advisory and implementation practice in Charlottesville, VA. Audit first, one workflow at a time, human review always.",
+    "Copp Oak Advisory is a founder-led AI advisory and implementation practice in Charlottesville, VA. Audit first, one workflow at a time, human review always.",
 };
 
 const PRINCIPLES = [
@@ -54,7 +54,7 @@ export default function AboutPage() {
               An AI practice built the way good local businesses are built.
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              Agent Ally exists because Charlottesville's owner-led businesses deserve better than
+              Copp Oak Advisory exists because Charlottesville's owner-led businesses deserve better than
               the two options on offer: hype-driven automation agencies on one side, and
               enterprise consultancies that won't return a call under $200k on the other. We're the
               third option — senior judgment, practical implementation, local accountability.

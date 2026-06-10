@@ -27,7 +27,7 @@ export async function submitAuditIntake(input: IntakeSubmission): Promise<Intake
   if (!user) return { ok: false, error: "Please sign in to submit your intake." };
 
   const organizationId = await ensureOrganization();
-  if (!organizationId) return { ok: false, error: "Couldn't find your workspace. Contact ben@agentally.co." };
+  if (!organizationId) return { ok: false, error: "Couldn't find your workspace. Contact ben@coppoakadvisory.com." };
 
   const d = parsed.data;
 
@@ -74,7 +74,7 @@ export async function submitAuditIntake(input: IntakeSubmission): Promise<Intake
   // 3. Child collections (best-effort, validated above).
   const fail = async (label: string, message: string | undefined) => {
     console.error(`[intake] ${label} insert failed:`, message);
-    return { ok: false as const, error: "Part of your intake didn't save. Contact ben@agentally.co." };
+    return { ok: false as const, error: "Part of your intake didn't save. Contact ben@coppoakadvisory.com." };
   };
 
   if (d.tools.length) {

@@ -10,16 +10,10 @@ export function LogoMark({ className }: { className?: string }) {
       className={cn("h-7 w-7", className)}
     >
       <rect x="1" y="1" width="30" height="30" rx="8" className="fill-pine-800" />
-      {/* Blue Ridge double-ridge "A" */}
+      {/* Oak: cream canopy over a bronze trunk with spreading roots */}
+      <circle cx="16" cy="12.5" r="6.5" stroke="#f2efe7" strokeWidth="2.2" fill="none" />
       <path
-        d="M6 23 L13.5 9.5 L17.5 17"
-        stroke="#f2efe7"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M13 23 L19.5 11.5 L26 23"
+        d="M16 19 L16 26 M16 22.5 L11 20.5 M16 22.5 L21 20.5 M16 26 L12.5 27.5 M16 26 L19.5 27.5"
         stroke="#c89a5b"
         strokeWidth="2.2"
         strokeLinecap="round"
@@ -39,7 +33,7 @@ export function Logo({ className, light = false }: { className?: string; light?:
           light ? "text-[#f2efe7]" : "text-ink"
         )}
       >
-        Agent Ally
+        Copp Oak Advisory
       </span>
     </Link>
   );

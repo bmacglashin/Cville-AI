@@ -9,7 +9,7 @@ data; the advisor edits before anything is shared.*
 
 # AI Operating Audit — ⟨Client Name⟩
 
-**Prepared by:** Ben, Agent Ally · **Date:** ⟨date⟩ · **Engagement window:** ⟨dates⟩
+**Prepared by:** Ben, Copp Oak Advisory · **Date:** ⟨date⟩ · **Engagement window:** ⟨dates⟩
 **Confidential** — prepared for ⟨owner name⟩. Contains no regulated data by design.
 **Your accounts. Your data. Our operating method.**
 
@@ -77,7 +77,7 @@ AI-eager clients.⟩
 
 | Window | Action | Owner | Done means |
 | --- | --- | --- | --- |
-| Days 1–30 | ⟨corpus scrub + Quickstart: proposal assistant⟩ | Agent Ally + ⟨owner⟩ | ⟨3 real proposals drafted-reviewed-sent⟩ |
+| Days 1–30 | ⟨corpus scrub + Quickstart: proposal assistant⟩ | Copp Oak Advisory + ⟨owner⟩ | ⟨3 real proposals drafted-reviewed-sent⟩ |
 | Days 31–60 | ⟨SOP consolidation + assistant pilot⟩ | joint | ⟨team answers 10 test questions without owner⟩ |
 | Days 61–90 | ⟨handoff checklist generator / operating-cadence decision⟩ | joint | ⟨criteria⟩ |
 

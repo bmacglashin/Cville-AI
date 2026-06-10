@@ -9,7 +9,7 @@ handoff-builder UI is deliberately deferred until retainer clients exist
 
 # Operating Stack Handoff — ⟨Client Name⟩
 
-**Prepared by:** Ben, Agent Ally · **Date:** ⟨date⟩ · **Engagement(s):** ⟨audit / quickstart /
+**Prepared by:** Ben, Copp Oak Advisory · **Date:** ⟨date⟩ · **Engagement(s):** ⟨audit / quickstart /
 managed workspace + operate⟩
 
 ## 1. Tools & ownership
@@ -18,11 +18,11 @@ managed workspace + operate⟩
 | --- | --- | --- | --- | --- | --- |
 | ⟨Workspace suite⟩ | Foundational workspace | ⟨Client⟩ | ⟨who has admin⟩ | ⟨Client⟩ | |
 
-Every account is owned by ⟨Client⟩. Agent Ally access removed/retained as listed above.
+Every account is owned by ⟨Client⟩. Copp Oak Advisory access removed/retained as listed above.
 
-## 2. Credentials — not stored by Agent Ally
+## 2. Credentials — not stored by Copp Oak Advisory
 
-Agent Ally does **not** store your passwords, API keys, or financial credentials. Access was via
+Copp Oak Advisory does **not** store your passwords, API keys, or financial credentials. Access was via
 ⟨delegated admin / invited user⟩ and has been ⟨revoked / scoped down⟩ as of ⟨date⟩. Rotate the
 following on offboarding as a precaution: ⟨list of accounts where we held elevated access⟩.
 
@@ -58,7 +58,7 @@ disabled."⟩
 
 - Export paths exercised: ⟨what was exported, where it lives⟩
 - What to do if you cancel ⟨tool⟩: ⟨consequences + alternatives⟩
-- Deletion: on written request, Agent Ally deletes engagement materials we hold within 30 days
+- Deletion: on written request, Copp Oak Advisory deletes engagement materials we hold within 30 days
   and confirms in writing (per the privacy notice).
 
 ## 9. If you need us again
@@ -68,5 +68,5 @@ Ongoing operation → Operate retainer. ⟨contact⟩
 
 ---
 
-*Nothing in this handoff transfers ownership of Agent Ally's underlying methods, templates,
+*Nothing in this handoff transfers ownership of Copp Oak Advisory's underlying methods, templates,
 playbooks, or vetting frameworks; everything configured in your accounts is yours.*

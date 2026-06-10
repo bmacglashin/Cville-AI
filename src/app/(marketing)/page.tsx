@@ -30,7 +30,7 @@ import {
 import { formatCents } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Agent Ally — a tool-agnostic AI operating partner for owner-led businesses",
+  title: "Copp Oak Advisory — a tool-agnostic AI operating partner for owner-led businesses",
   description:
     "Start with a paid AI Operating Audit. We recommend the right client-owned tool stack, configure safe workflows, document the system, train your team, and stay on to operate it. Founder-led, Charlottesville-based.",
 };
@@ -281,7 +281,7 @@ export default function HomePage() {
               <SectionHeading
                 eyebrow="Who you're working with"
                 title="Founder-led, by design."
-                lede="Agent Ally is run by Ben — Darden MBA, former Deloitte consultant leading go-to-market AI work, and a hands-on builder of AI workflows. Every audit, every owner interview, and every implementation in the founding cohort is delivered by him personally."
+                lede="Copp Oak Advisory is run by Ben — Darden MBA, former Deloitte consultant leading go-to-market AI work, and a hands-on builder of AI workflows. Every audit, every owner interview, and every implementation in the founding cohort is delivered by him personally."
               />
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
                 That's a constraint, and it's the point: you get senior judgment about what's worth

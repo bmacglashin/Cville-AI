@@ -70,7 +70,7 @@ describe("Quickstart proposals", () => {
     expect(draft.total_amount_cents).toBe(300000);
     expect(draft.valid_until).toBe("2026-06-24");
     expect(draft.summary).toContain("client-owned tools");
-    expect(draft.summary).toContain("Agent Ally operating method");
+    expect(draft.summary).toContain("Copp Oak Advisory operating method");
     expect(draft.summary).toContain("Assumptions: Client owns every account");
     expect(draft.summary).toContain("Exclusions: Customer-facing chat");
   });

@@ -10,7 +10,7 @@ Work top to bottom. Items marked ⛔ block public launch; ✋ block the first *p
 - [ ] Seed ONLY the `service_packages` block from `supabase/seed.sql` (never the demo users)
 - [ ] Verify in SQL editor: `select tablename from pg_tables where schemaname='public' and rowsecurity=false;` → zero rows
 - [ ] Run Supabase Security Advisor; resolve anything red
-- [ ] Buy domain (agentally.co or similar); set up Vercel project from this repo
+- [ ] Buy domain (coppoakadvisory.com or similar); set up Vercel project from this repo
 - [ ] Vercel env vars: `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 - [ ] Supabase Auth → URL configuration: Site URL = production domain; add `https://<domain>/auth/callback`
 - [ ] Sign up your real account on production → promote: `update public.profiles set role='admin' where email='…';`
@@ -22,7 +22,7 @@ Work top to bottom. Items marked ⛔ block public launch; ✋ block the first *p
 - [ ] Resend: verify domain, set `RESEND_API_KEY`, `EMAIL_FROM`, `ADMIN_NOTIFICATION_EMAIL`
 - [ ] Submit a real test application on production → confirm lead appears in `/admin/leads` + email arrives
 - [ ] Create Stripe Payment Link for $950 audit → put in `NEXT_PUBLIC_STRIPE_AUDIT_PAYMENT_LINK` (sent manually after fit calls for now)
-- [ ] Replace placeholder email `ben@agentally.co` in `src/lib/content.ts`, `/apply`, `/privacy`, `/terms` with the live address
+- [ ] Replace placeholder email `ben@coppoakadvisory.com` in `src/lib/content.ts`, `/apply`, `/privacy`, `/terms` with the live address
 - [ ] Set `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` (or remove analytics placeholder consciously)
 
 ## 3. Content pass ⛔

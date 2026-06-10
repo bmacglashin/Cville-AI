@@ -5,7 +5,7 @@ import { RISK_BOUNDARIES } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Privacy & data handling",
   description:
-    "How Agent Ally collects, uses, and protects information — and the hard boundaries on what data we will and won't work with.",
+    "How Copp Oak Advisory collects, uses, and protects information — and the hard boundaries on what data we will and won't work with.",
 };
 
 export default function PrivacyPage() {
@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         </h1>
         <p className="mt-4 text-sm text-muted-foreground">
           Draft notice for the validation period. Last updated June 2026. This will be reviewed by
-          counsel before broader launch; questions to ben@agentally.co.
+          counsel before broader launch; questions to ben@coppoakadvisory.com.
         </p>
 
         <div className="mt-10 space-y-10 text-base leading-relaxed text-foreground/90">
@@ -103,7 +103,7 @@ export default function PrivacyPage() {
               <li>You can request a copy of the data we hold about your business.</li>
               <li>You can request correction or deletion at any time.</li>
               <li>You can decline analytics cookies by default — we don't use any.</li>
-              <li>Email ben@agentally.co for any of the above.</li>
+              <li>Email ben@coppoakadvisory.com for any of the above.</li>
             </ul>
           </section>
         </div>

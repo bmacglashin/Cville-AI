@@ -6,7 +6,7 @@ import { FAQS } from "@/lib/content";
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Frequently asked questions about Agent Ally's AI Operating Audit, Workflow Quickstarts, pricing, and data handling for Charlottesville businesses.",
+    "Frequently asked questions about Copp Oak Advisory's AI Operating Audit, Workflow Quickstarts, pricing, and data handling for Charlottesville businesses.",
 };
 
 export default function FaqPage() {

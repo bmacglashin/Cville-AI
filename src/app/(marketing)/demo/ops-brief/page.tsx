@@ -20,7 +20,7 @@ import { Section } from "@/components/marketing/section";
 export const metadata: Metadata = {
   title: "Sample: Owner Weekly Ops Brief (fictional demo)",
   description:
-    "A sample Owner Weekly Ops Brief for a fictional design/build company — the kind of Monday-morning digest an Agent Ally engagement can produce. 100% dummy data.",
+    "A sample Owner Weekly Ops Brief for a fictional design/build company — the kind of Monday-morning digest an Copp Oak Advisory engagement can produce. 100% dummy data.",
 };
 
 function BriefSection({

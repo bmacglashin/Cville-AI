@@ -53,7 +53,7 @@ export default async function PortalMessagesPage() {
               >
                 <div className="flex items-baseline justify-between gap-3">
                   <span className="text-xs font-semibold text-ink">
-                    {isMine ? "You" : "Ben (Agent Ally)"}
+                    {isMine ? "You" : "Ben (Copp Oak Advisory)"}
                   </span>
                   <span className="text-xs text-muted-foreground">{formatDate(c.created_at)}</span>
                 </div>

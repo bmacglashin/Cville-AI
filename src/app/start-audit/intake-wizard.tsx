@@ -80,7 +80,7 @@ const STEPS = [
   "Review & submit",
 ] as const;
 
-const DRAFT_KEY = "agent-ally-intake-draft-v1";
+const DRAFT_KEY = "copp-oak-advisory-intake-draft-v1";
 
 function emptyState(defaults?: { organizationName?: string }): WizardState {
   return {

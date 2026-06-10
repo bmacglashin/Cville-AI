@@ -1,4 +1,4 @@
-# Agent Ally
+# Copp Oak Advisory
 
 **A tool-agnostic AI operating partner for Charlottesville owner-led businesses.**
 
@@ -67,8 +67,8 @@ Auth/portal/admin surfaces show a setup notice until Supabase is connected.
 
    | Role | Email | Password |
    | --- | --- | --- |
-   | Admin (Ben) | `admin@agentally.test` | `password123` |
-   | Client (demo) | `client@agentally.test` | `password123` |
+   | Admin (Ben) | `admin@coppoak.test` | `password123` |
+   | Client (demo) | `client@coppoak.test` | `password123` |
 
    The seed includes "Blue Ridge Custom Builders" — a fictional design/build client with a
    complete intake, scored opportunities, roadmap, proposal, deliverables, and tasks, so both

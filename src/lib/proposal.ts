@@ -57,7 +57,7 @@ function addDays(d: Date, days: number): Date {
 
 function ownershipLanguage(rec: Pick<StackRecommendation, "assumptions" | "excluded_use_cases">): string {
   const parts = [
-    "Built on client-owned tools — your accounts, your data, the Agent Ally operating method. Existing tools first; nothing here creates dependency on software we control.",
+    "Built on client-owned tools — your accounts, your data, the Copp Oak Advisory operating method. Existing tools first; nothing here creates dependency on software we control.",
   ];
   if (rec.assumptions.length > 0) parts.push(`Assumptions: ${rec.assumptions.join("; ")}.`);
   if (rec.excluded_use_cases.length > 0) parts.push(`Exclusions: ${rec.excluded_use_cases.join("; ")}.`);

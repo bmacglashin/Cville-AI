@@ -4,7 +4,7 @@ import { Section } from "@/components/marketing/section";
 export const metadata: Metadata = {
   title: "Terms & disclaimers",
   description:
-    "Draft terms of use and service disclaimers for Agent Ally's website and advisory engagements.",
+    "Draft terms of use and service disclaimers for Copp Oak Advisory's website and advisory engagements.",
 };
 
 export default function TermsPage() {
@@ -27,7 +27,7 @@ export default function TermsPage() {
           <section>
             <h2 className="font-display text-2xl text-ink">1. What this website is</h2>
             <p className="mt-4">
-              This site describes advisory and implementation services offered by Agent Ally
+              This site describes advisory and implementation services offered by Copp Oak Advisory
               (Charlottesville, VA) and lets you apply for an engagement. Content here is general
               information, not advice for your specific situation. Submitting an application
               doesn't create an engagement; engagements begin only when both parties sign a
@@ -38,7 +38,7 @@ export default function TermsPage() {
           <section>
             <h2 className="font-display text-2xl text-ink">2. Not legal, tax, financial, or compliance advice</h2>
             <p className="mt-4">
-              Agent Ally provides operational and technology advisory services. Nothing we publish
+              Copp Oak Advisory provides operational and technology advisory services. Nothing we publish
               or deliver constitutes legal, tax, accounting, investment, insurance, or regulatory
               compliance advice. Where engagements touch areas with legal or regulatory
               implications, we'll tell you to involve your attorney or accountant — and mean it.
@@ -91,7 +91,7 @@ export default function TermsPage() {
           <section>
             <h2 className="font-display text-2xl text-ink">7. Limitation of liability</h2>
             <p className="mt-4">
-              To the maximum extent permitted by law, Agent Ally's total liability arising out of
+              To the maximum extent permitted by law, Copp Oak Advisory's total liability arising out of
               any engagement is limited to the fees paid for that engagement, and neither party is
               liable for indirect or consequential damages. Final language will appear in the MSA.
             </p>

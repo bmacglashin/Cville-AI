@@ -8,7 +8,7 @@ tool-agnostic stance lives in `docs/TOOL_DOCTRINE.md`.
 
 **Primary:** A tool-agnostic AI operating partner for Charlottesville owner-led businesses.
 
-**Full statement:** Agent Ally audits the business, recommends the right client-owned tool
+**Full statement:** Copp Oak Advisory audits the business, recommends the right client-owned tool
 stack, configures safe workflows, documents the system, trains the team, and stays on to
 operate and improve it. Existing tools first. Custom builds only when ROI, data risk, scope,
 and budget justify it.

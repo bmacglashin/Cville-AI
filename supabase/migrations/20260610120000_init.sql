@@ -1,5 +1,5 @@
 -- ============================================================================
--- Agent Ally — initial schema
+-- Copp Oak Advisory — initial schema
 -- Scope: internal validation + delivery backend (CRM, audit intake, delivery
 -- tracking) for a founder-led AI advisory business. NOT a multi-tenant SaaS.
 -- ============================================================================

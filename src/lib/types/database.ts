@@ -65,7 +65,7 @@ export type DeliveryMode =
 
 export type RecommendationType = "default" | "optional" | "premium" | "rejected" | "defer";
 
-export type ToolInstanceOwnerType = "client_owned" | "agent_ally_managed" | "unknown";
+export type ToolInstanceOwnerType = "client_owned" | "advisor_managed" | "unknown";
 export type StackRecommendationStatus = "draft" | "reviewed" | "shared";
 export type ReadoutStatus = "draft" | "reviewed" | "sent" | "archived";
 export type PlaybookComplexity = "low" | "medium" | "high" | "custom";
@@ -168,7 +168,7 @@ export const READOUT_STATUSES: ReadoutStatus[] = ["draft", "reviewed", "sent", "
 
 export const TOOL_INSTANCE_OWNER_TYPES: ToolInstanceOwnerType[] = [
   "client_owned",
-  "agent_ally_managed",
+  "advisor_managed",
   "unknown",
 ];
 

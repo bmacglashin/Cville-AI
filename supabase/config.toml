@@ -1,7 +1,7 @@
 # Supabase CLI configuration for local development.
 # Run `supabase start` then `supabase db reset` to apply migrations + seed.
 
-project_id = "agent-ally"
+project_id = "copp-oak-advisory"
 
 [api]
 enabled = true

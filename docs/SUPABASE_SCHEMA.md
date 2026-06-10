@@ -102,7 +102,7 @@ the safety rails in `src/lib/safety.ts` force defer/decline on `regulated` and `
 - **`client_tool_instances`** — tools a client business actually runs. `tool_vendor_id`
   nullable (many client tools aren't in the AI catalog) plus a denormalized `tool_name` so the
   portal can display the client's own stack without piercing the admin-only catalog;
-  `owner_type` check (`client_owned`/`agent_ally_managed`/`unknown`), `data_sensitivity`,
+  `owner_type` check (`client_owned`/`advisor_managed`/`unknown`), `data_sensitivity`,
   free-text `status`, `monthly_cost_cents`, `review_date`, notes.
 - **`stack_recommendations`** — a recommended operating stack per client: linked
   `audit_intake_id`, `delivery_mode`, `overall_data_sensitivity`, `assumptions jsonb`,

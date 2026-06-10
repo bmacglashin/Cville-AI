@@ -7,7 +7,7 @@ when an owner asks "so what exactly are you selling me?"*
 
 ## The sentence
 
-Agent Ally is a **tool-agnostic AI operating partner** for owner-led businesses. We audit the
+Copp Oak Advisory is a **tool-agnostic AI operating partner** for owner-led businesses. We audit the
 business, recommend the right client-owned tool stack, configure safe workflows, document the
 system, train the team, and stay on to operate and improve it.
 

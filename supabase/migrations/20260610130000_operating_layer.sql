@@ -1,5 +1,5 @@
 -- ============================================================================
--- Agent Ally — Operating Layer v1
+-- Copp Oak Advisory — Operating Layer v1
 --
 -- Internal delivery engine for the tool-agnostic operating-partner motion:
 --   * tool_vendors          — vetted tool catalog (internal doctrine; admin-only)
@@ -149,7 +149,7 @@ create table public.client_tool_instances (
   tool_vendor_id uuid references public.tool_vendors (id) on delete set null,
   tool_name text not null,
   owner_type text not null default 'client_owned'
-    check (owner_type in ('client_owned', 'agent_ally_managed', 'unknown')),
+    check (owner_type in ('client_owned', 'advisor_managed', 'unknown')),
   purpose text,
   data_sensitivity public.data_sensitivity not null default 'internal',
   status text not null default 'active',
