@@ -6,6 +6,8 @@ import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
 import { slugify } from "@/lib/utils";
 import { railDeliveryMode, railRecommendationType, withRailReason } from "@/lib/safety";
+import { generateReadoutMarkdown, type ReadoutItemInput } from "@/lib/readout";
+import { buildProposalDraft } from "@/lib/proposal";
 import {
   APPROVAL_STATUSES,
   DELIVERY_MODES,
@@ -13,6 +15,9 @@ import {
   RECOMMENDATION_TYPES,
   TOOL_CATEGORIES_DB,
   TOOL_INSTANCE_OWNER_TYPES,
+  type StackRecommendation,
+  type StackRecommendationItem,
+  type ToolVendor,
 } from "@/lib/types/database";
 
 /**
@@ -118,7 +123,7 @@ const vendorSchema = z.object({
 
 function parseVendorForm(formData: FormData) {
   const name = text(formData, "name");
-  const whiteLabel = text(formData, "white_label_allowed");
+  const rebrandTerms = text(formData, "white_label_allowed");
   return vendorSchema.safeParse({
     name,
     slug: text(formData, "slug") || slugify(name),
@@ -128,7 +133,7 @@ function parseVendorForm(formData: FormData) {
     default_use_case: optText(formData, "default_use_case"),
     public_copy_allowed: checkbox(formData, "public_copy_allowed"),
     client_owned_account_required: checkbox(formData, "client_owned_account_required"),
-    white_label_allowed: whiteLabel === "yes" ? true : whiteLabel === "no" ? false : null,
+    white_label_allowed: rebrandTerms === "yes" ? true : rebrandTerms === "no" ? false : null,
     dpa_status: optText(formData, "dpa_status"),
     no_training_status: optText(formData, "no_training_status"),
     admin_controls_status: optText(formData, "admin_controls_status"),
@@ -599,4 +604,265 @@ export async function removeStackRecommendationItem(formData: FormData): Promise
 
   await ctx.supabase.from("stack_recommendation_items").delete().eq("id", id.data);
   revalidatePath(`/admin/clients/${orgId.data}/stack`);
+}
+
+/* ── Audit readouts ────────────────────────────────────────────── */
+
+/**
+ * Deterministic readout generation — assembles existing engagement rows
+ * into the standard markdown sections (src/lib/readout.ts). No LLM: AI
+ * drafting stays behind AI_DRAFTING_ENABLED via the separate stub.
+ */
+export async function generateAuditReadout(formData: FormData): Promise<void> {
+  const ctx = await requireAdmin();
+  if (!ctx) return;
+  const orgId = uuid.safeParse(formData.get("organization_id"));
+  if (!orgId.success) return;
+
+  const { data: org } = await ctx.supabase
+    .from("organizations")
+    .select("name, industry, team_size")
+    .eq("id", orgId.data)
+    .single();
+  if (!org) return;
+
+  const [
+    { data: intake },
+    { data: notes },
+    { data: tools },
+    { data: workflows },
+    { data: pains },
+    { data: sources },
+    { data: opportunities },
+    { data: scores },
+    { data: roadmap },
+    { data: recommendation },
+    { data: instances },
+  ] = await Promise.all([
+    ctx.supabase.from("audit_intakes").select("*").eq("organization_id", orgId.data).order("submitted_at", { ascending: false }).limit(1).maybeSingle(),
+    ctx.supabase.from("discovery_notes").select("call_type, summary, occurred_at").eq("organization_id", orgId.data).order("occurred_at"),
+    ctx.supabase.from("tools_inventory").select("name, category, usage_notes").eq("organization_id", orgId.data),
+    ctx.supabase.from("workflows").select("name, description, frequency, hours_per_week").eq("organization_id", orgId.data),
+    ctx.supabase.from("pain_points").select("area, description, severity").eq("organization_id", orgId.data),
+    ctx.supabase.from("data_sources").select("name, sensitivity, notes").eq("organization_id", orgId.data),
+    ctx.supabase.from("ai_opportunities").select("id, title, description").eq("organization_id", orgId.data).order("created_at"),
+    ctx.supabase.from("opportunity_scores").select("*").eq("organization_id", orgId.data),
+    ctx.supabase.from("roadmap_items").select("title, description, phase, target_window").eq("organization_id", orgId.data).order("sort_order"),
+    ctx.supabase.from("stack_recommendations").select("*").eq("organization_id", orgId.data).order("created_at", { ascending: false }).limit(1).maybeSingle(),
+    ctx.supabase.from("client_tool_instances").select("tool_name, owner_type, data_sensitivity, purpose").eq("organization_id", orgId.data),
+  ]);
+
+  const scoreByOpp = new Map((scores ?? []).map((s) => [s.opportunity_id as string, s]));
+
+  let recommendationInput: (StackRecommendation & { items: ReadoutItemInput[] }) | null = null;
+  if (recommendation) {
+    const { data: itemRows } = await ctx.supabase
+      .from("stack_recommendation_items")
+      .select("*")
+      .eq("stack_recommendation_id", recommendation.id)
+      .order("sort_order");
+    const vendorIds = (itemRows ?? []).map((i) => i.tool_vendor_id).filter(Boolean) as string[];
+    const { data: vendors } = vendorIds.length
+      ? await ctx.supabase.from("tool_vendors").select("id, name, public_copy_allowed").in("id", vendorIds)
+      : { data: [] as Pick<ToolVendor, "id" | "name" | "public_copy_allowed">[] };
+    const vendorById = new Map((vendors ?? []).map((v) => [v.id, v]));
+    // Naming rule (docs/TOOL_DOCTRINE.md): non-public vendors appear as
+    // their category, never by name, in anything that could reach a client.
+    const items: ReadoutItemInput[] = ((itemRows ?? []) as StackRecommendationItem[]).map((item) => {
+      const vendor = item.tool_vendor_id ? vendorById.get(item.tool_vendor_id) : undefined;
+      return { ...item, vendorName: vendor?.public_copy_allowed ? vendor.name : null };
+    });
+    recommendationInput = { ...(recommendation as StackRecommendation), items };
+  }
+
+  const markdown = generateReadoutMarkdown({
+    organization: org,
+    intake: intake ?? null,
+    discoveryNotes: notes ?? [],
+    toolsInventory: tools ?? [],
+    workflows: workflows ?? [],
+    painPoints: pains ?? [],
+    dataSources: sources ?? [],
+    opportunities: (opportunities ?? []).map((o) => ({
+      ...o,
+      score: scoreByOpp.get(o.id) ?? null,
+    })),
+    roadmapItems: roadmap ?? [],
+    recommendation: recommendationInput,
+    toolInstances: instances ?? [],
+    today: new Date(),
+  });
+
+  const { data: created, error } = await ctx.supabase
+    .from("audit_readouts")
+    .insert({
+      organization_id: orgId.data,
+      audit_intake_id: intake?.id ?? null,
+      stack_recommendation_id: recommendation?.id ?? null,
+      title: `AI Operating Audit Readout — ${org.name}`,
+      generated_markdown: markdown,
+      status: "draft",
+      client_visible: false,
+      created_by: ctx.userId,
+    })
+    .select("id")
+    .single();
+  if (error || !created) {
+    console.error("[admin] generate readout failed:", error?.message);
+    return;
+  }
+  await logActivity(ctx.supabase, ctx.userId, orgId.data, "audit_readout_generated", "audit_readout", {
+    audit_readout_id: created.id,
+    deterministic: true,
+  });
+  revalidatePath(`/admin/clients/${orgId.data}/readout`);
+}
+
+export async function updateAuditReadout(formData: FormData): Promise<void> {
+  const ctx = await requireAdmin();
+  if (!ctx) return;
+  const parsed = z
+    .object({
+      id: uuid,
+      organization_id: uuid,
+      title: z.string().min(1).max(200),
+      generated_markdown: z.string().max(120000),
+    })
+    .safeParse({
+      id: formData.get("id"),
+      organization_id: formData.get("organization_id"),
+      title: text(formData, "title"),
+      generated_markdown: String(formData.get("generated_markdown") ?? ""),
+    });
+  if (!parsed.success) return;
+
+  await ctx.supabase
+    .from("audit_readouts")
+    .update({ title: parsed.data.title, generated_markdown: parsed.data.generated_markdown })
+    .eq("id", parsed.data.id);
+  revalidatePath(`/admin/clients/${parsed.data.organization_id}/readout`);
+  revalidatePath("/portal/readout");
+}
+
+export async function setAuditReadoutStatus(formData: FormData): Promise<void> {
+  const ctx = await requireAdmin();
+  if (!ctx) return;
+  const parsed = z
+    .object({
+      id: uuid,
+      organization_id: uuid,
+      status: z.enum(["draft", "reviewed", "sent", "archived"]),
+    })
+    .safeParse({
+      id: formData.get("id"),
+      organization_id: formData.get("organization_id"),
+      status: formData.get("status"),
+    });
+  if (!parsed.success) return;
+
+  await ctx.supabase
+    .from("audit_readouts")
+    .update({
+      status: parsed.data.status,
+      reviewed_at:
+        parsed.data.status === "reviewed" || parsed.data.status === "sent"
+          ? new Date().toISOString()
+          : undefined,
+    })
+    .eq("id", parsed.data.id);
+  if (parsed.data.status === "sent") {
+    await logActivity(ctx.supabase, ctx.userId, parsed.data.organization_id, "audit_readout_sent", "audit_readout", {
+      audit_readout_id: parsed.data.id,
+    });
+  }
+  revalidatePath(`/admin/clients/${parsed.data.organization_id}/readout`);
+  revalidatePath("/portal/readout");
+}
+
+export async function toggleReadoutClientVisible(formData: FormData): Promise<void> {
+  const ctx = await requireAdmin();
+  if (!ctx) return;
+  const id = uuid.safeParse(formData.get("id"));
+  const orgId = uuid.safeParse(formData.get("organization_id"));
+  if (!id.success || !orgId.success) return;
+
+  const { data: readout } = await ctx.supabase
+    .from("audit_readouts")
+    .select("client_visible")
+    .eq("id", id.data)
+    .single();
+  if (!readout) return;
+
+  await ctx.supabase
+    .from("audit_readouts")
+    .update({ client_visible: !readout.client_visible })
+    .eq("id", id.data);
+  revalidatePath(`/admin/clients/${orgId.data}/readout`);
+  revalidatePath("/portal/readout");
+}
+
+/* ── Proposal generation (from a stack recommendation) ─────────── */
+
+export async function generateProposalFromRecommendation(formData: FormData): Promise<void> {
+  const ctx = await requireAdmin();
+  if (!ctx) return;
+  const recId = uuid.safeParse(formData.get("stack_recommendation_id"));
+  const orgId = uuid.safeParse(formData.get("organization_id"));
+  if (!recId.success || !orgId.success) return;
+
+  const [{ data: recommendation }, { data: items }, { data: sentReadout }] = await Promise.all([
+    ctx.supabase.from("stack_recommendations").select("*").eq("id", recId.data).single(),
+    ctx.supabase
+      .from("stack_recommendation_items")
+      .select("use_case, recommendation_type")
+      .eq("stack_recommendation_id", recId.data)
+      .order("sort_order"),
+    ctx.supabase
+      .from("audit_readouts")
+      .select("reviewed_at, updated_at")
+      .eq("organization_id", orgId.data)
+      .eq("status", "sent")
+      .order("updated_at", { ascending: false })
+      .limit(1)
+      .maybeSingle(),
+  ]);
+  if (!recommendation) return;
+
+  const result = buildProposalDraft({
+    recommendation,
+    items: items ?? [],
+    auditReadoutSentAt: sentReadout?.reviewed_at ?? sentReadout?.updated_at ?? null,
+    now: new Date(),
+  });
+  if (!result.ok) {
+    console.error("[admin] proposal generation refused:", result.error);
+    redirect(`/admin/clients/${orgId.data}/stack?proposal_error=${encodeURIComponent(result.error)}`);
+  }
+
+  const { draft } = result;
+  const { data: proposal, error } = await ctx.supabase
+    .from("proposals")
+    .insert({
+      organization_id: orgId.data,
+      title: draft.title,
+      summary: draft.summary,
+      status: "draft",
+      total_amount_cents: draft.total_amount_cents,
+      valid_until: draft.valid_until,
+    })
+    .select("id")
+    .single();
+  if (error || !proposal) {
+    console.error("[admin] create proposal failed:", error?.message);
+    return;
+  }
+  await ctx.supabase.from("proposal_line_items").insert(
+    draft.lineItems.map((line) => ({ ...line, proposal_id: proposal.id }))
+  );
+  await logActivity(ctx.supabase, ctx.userId, orgId.data, "proposal_generated", "proposal", {
+    proposal_id: proposal.id,
+    stack_recommendation_id: recId.data,
+  });
+  revalidatePath(`/admin/clients/${orgId.data}`);
+  redirect(`/admin/clients/${orgId.data}#proposals`);
 }

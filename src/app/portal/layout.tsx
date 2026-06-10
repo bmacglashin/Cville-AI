@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   FlaskConical,
   Home,
+  Layers,
   ListChecks,
   Map,
   MessageSquare,
@@ -9,6 +10,7 @@ import {
   Files,
   Lightbulb,
   ClipboardList,
+  ScrollText,
 } from "lucide-react";
 import { Logo } from "@/components/marketing/logo";
 import { Button } from "@/components/ui/button";
@@ -20,6 +22,8 @@ const NAV = [
   { href: "/portal", label: "Overview", icon: Home },
   { href: "/portal/intake", label: "Your intake", icon: ClipboardList },
   { href: "/portal/opportunities", label: "Opportunities", icon: Lightbulb },
+  { href: "/portal/stack", label: "Your stack", icon: Layers },
+  { href: "/portal/readout", label: "Audit readout", icon: ScrollText },
   { href: "/portal/roadmap", label: "Roadmap", icon: Map },
   { href: "/portal/deliverables", label: "Deliverables", icon: FileText },
   { href: "/portal/tasks", label: "Tasks", icon: ListChecks },

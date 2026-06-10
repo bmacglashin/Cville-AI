@@ -91,7 +91,7 @@ export function VendorForm({
               Client-owned account required
             </label>
             <label className="flex items-center gap-2 text-sm">
-              White-label allowed
+              Vendor terms permit rebrand/resale
               <Select
                 name="white_label_allowed"
                 defaultValue={

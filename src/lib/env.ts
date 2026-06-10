@@ -28,6 +28,15 @@ export function isStripeConfigured() {
   return Boolean(process.env.STRIPE_SECRET_KEY);
 }
 
+/**
+ * LLM-assisted drafting stays OFF by default — readout generation is
+ * deterministic (src/lib/readout.ts). Flipping this only exposes the
+ * advisor-review-only drafting stub; see docs/NEXT_STEPS.md.
+ */
+export function isAiDraftingEnabled() {
+  return process.env.AI_DRAFTING_ENABLED === "true";
+}
+
 export function isResendConfigured() {
   return Boolean(process.env.RESEND_API_KEY);
 }

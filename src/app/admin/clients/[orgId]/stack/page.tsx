@@ -14,6 +14,7 @@ import {
   addClientToolInstance,
   addStackRecommendationItem,
   createStackRecommendation,
+  generateProposalFromRecommendation,
   removeStackRecommendationItem,
   setStackRecommendationStatus,
   updateClientToolInstanceStatus,
@@ -46,10 +47,13 @@ const REC_TYPE_VARIANT: Record<RecommendationType, "success" | "default" | "acce
 
 export default async function AdminClientStackPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ orgId: string }>;
+  searchParams: Promise<{ proposal_error?: string }>;
 }) {
   const { orgId } = await params;
+  const { proposal_error } = await searchParams;
   const supabase = await createClient();
 
   const { data: org } = await supabase
@@ -106,6 +110,13 @@ export default async function AdminClientStackPage({
           </Link>
         </div>
       </div>
+
+      {proposal_error && (
+        <Alert variant="danger">
+          <AlertTitle>Proposal not generated</AlertTitle>
+          <AlertDescription>{proposal_error}</AlertDescription>
+        </Alert>
+      )}
 
       {/* Safety rails — always visible while composing */}
       <Alert variant="warning">
@@ -300,18 +311,27 @@ export default async function AdminClientStackPage({
                       </span>
                     </div>
                   </div>
-                  <form action={setStackRecommendationStatus} className="flex items-center gap-1.5">
-                    <input type="hidden" name="id" value={rec.id} />
-                    <input type="hidden" name="organization_id" value={orgId} />
-                    <Select name="status" defaultValue={rec.status} className="h-8 w-32 text-xs">
-                      <option value="draft">Draft</option>
-                      <option value="reviewed">Reviewed</option>
-                      <option value="shared">Shared</option>
-                    </Select>
-                    <Button type="submit" size="sm" variant="ghost">
-                      Set
-                    </Button>
-                  </form>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <form action={setStackRecommendationStatus} className="flex items-center gap-1.5">
+                      <input type="hidden" name="id" value={rec.id} />
+                      <input type="hidden" name="organization_id" value={orgId} />
+                      <Select name="status" defaultValue={rec.status} className="h-8 w-32 text-xs">
+                        <option value="draft">Draft</option>
+                        <option value="reviewed">Reviewed</option>
+                        <option value="shared">Shared</option>
+                      </Select>
+                      <Button type="submit" size="sm" variant="ghost">
+                        Set
+                      </Button>
+                    </form>
+                    <form action={generateProposalFromRecommendation}>
+                      <input type="hidden" name="stack_recommendation_id" value={rec.id} />
+                      <input type="hidden" name="organization_id" value={orgId} />
+                      <Button type="submit" size="sm" variant="outline">
+                        Generate draft proposal
+                      </Button>
+                    </form>
+                  </div>
                 </div>
 
                 {railed && (
