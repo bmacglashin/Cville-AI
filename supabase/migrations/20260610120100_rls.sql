@@ -1,5 +1,5 @@
 -- ============================================================================
--- Agent Ally — Row Level Security
+-- Copp Oak Advisory — Row Level Security
 --
 -- Principles:
 --   * RLS is enabled on EVERY table in public.

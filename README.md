@@ -1,11 +1,15 @@
-# Agent Ally
+# Copp Oak Advisory
 
-**Practical AI implementation for Charlottesville owner-led businesses.**
+**A tool-agnostic AI operating partner for Charlottesville owner-led businesses.**
 
 This repository is a **validation-first** sales, intake, and delivery operating system for a
-premium local AI advisory practice — *not* a multi-tenant SaaS product. It exists to sell and
-deliver paid **AI Operating Audits** ($950 founding / $1,250 standard), follow them with
-**AI Workflow Quickstarts** ($3,500 founding), and track everything in an internal CRM.
+premium local AI advisory practice — *not* a multi-tenant SaaS product, and not a platform
+being sold. It exists to sell and deliver paid **AI Operating Audits** ($950 founding /
+$1,250 standard), follow them with **AI Workflow Quickstarts** ($3,500 founding) and the
+post-audit **Managed AI Workspace + Operate** ($8,500 founding setup, retainer from
+$1,500/mo), and to run the whole motion from an internal CRM + delivery engine. The
+proprietary asset is the **method** — audit methodology, opportunity scoring, data-risk
+framework, vendor vetting, workflow playbooks, operating cadence — never the portal.
 
 What's in the box:
 
@@ -14,11 +18,13 @@ What's in the box:
 | Public site (12 pages) | Convert design/build & premium home-service owners to paid audit applications |
 | `/apply` | No-account audit application → `leads` table → email notification |
 | `/start-audit` | 7-step paid-audit intake wizard (account required, save-as-you-go) |
-| `/portal` | **Prototype** client workspace (labeled as such) — roadmap, deliverables, tasks, messages |
+| `/portal` | **Client Delivery Room (prototype, labeled)** — roadmap, deliverables, shared stack, audit readout, messages |
 | `/admin` | Ben's internal CRM: 10-stage pipeline, leads, client delivery workspace |
+| `/admin/tools` + `/admin/playbooks` | Internal vetted tool catalog + workflow playbook library (the method, admin-only) |
+| `/admin/clients/[id]/stack` + `…/readout` | Stack recommendation builder + deterministic Audit Readout builder (no LLM) |
 | `/demo/ops-brief` | Sample "Owner Weekly Ops Brief" built on fictional data |
-| `supabase/` | Migrations (22 tables, full RLS), seed data, local config |
-| `docs/` | Architecture, schema, security, launch checklist, prompt library |
+| `supabase/` | Migrations (28 tables, full RLS), seed data incl. internal catalog, local config |
+| `docs/` | Architecture, schema, security, tool doctrine, vetting checklist, operate playbook |
 | `docs/sales/` | Field kit: offer one-pager, scripts, outreach emails, delivery playbook |
 
 ## Quick start (zero keys required)
@@ -61,8 +67,8 @@ Auth/portal/admin surfaces show a setup notice until Supabase is connected.
 
    | Role | Email | Password |
    | --- | --- | --- |
-   | Admin (Ben) | `admin@agentally.test` | `password123` |
-   | Client (demo) | `client@agentally.test` | `password123` |
+   | Admin (Ben) | `admin@coppoak.test` | `password123` |
+   | Client (demo) | `client@coppoak.test` | `password123` |
 
    The seed includes "Blue Ridge Custom Builders" — a fictional design/build client with a
    complete intake, scored opportunities, roadmap, proposal, deliverables, and tasks, so both
@@ -120,19 +126,26 @@ npm test             # vitest (validation, utils, content, migration-safety test
 
 - [docs/PRODUCT_SPEC.md](./docs/PRODUCT_SPEC.md) — what this MVP is and deliberately isn't
 - [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) — stack, app structure, design decisions
-- [docs/SUPABASE_SCHEMA.md](./docs/SUPABASE_SCHEMA.md) — all 22 tables, enums, triggers
+- [docs/SUPABASE_SCHEMA.md](./docs/SUPABASE_SCHEMA.md) — all 28 tables, enums, triggers
 - [docs/RLS_POLICIES.md](./docs/RLS_POLICIES.md) — the security model, table by table
+- [docs/TOOL_DOCTRINE.md](./docs/TOOL_DOCTRINE.md) — client-owned-first, vendor naming rules, approval tiers
+- [docs/VENDOR_VETTING_CHECKLIST.md](./docs/VENDOR_VETTING_CHECKLIST.md) — how a tool earns a recommendation
+- [docs/OPERATE_RETAINER_PLAYBOOK.md](./docs/OPERATE_RETAINER_PLAYBOOK.md) — the monthly Operate cadence (a document, on purpose)
+- [docs/CLIENT_HANDOFF_TEMPLATE.md](./docs/CLIENT_HANDOFF_TEMPLATE.md) — tools, ownership, SOPs, offboarding
 - [docs/PRIVACY_AND_DATA_HANDLING_NOTES.md](./docs/PRIVACY_AND_DATA_HANDLING_NOTES.md) — data stance + legal to-dos
 - [docs/PROMPT_LIBRARY.md](./docs/PROMPT_LIBRARY.md) — versioned prompts for future AI features
 - [docs/LAUNCH_CHECKLIST.md](./docs/LAUNCH_CHECKLIST.md) + [docs/QA_CHECKLIST.md](./docs/QA_CHECKLIST.md)
 - [docs/SALES_COPY.md](./docs/SALES_COPY.md) — positioning + message bank
 - [docs/NEXT_STEPS.md](./docs/NEXT_STEPS.md) — what's stubbed, deferred, and next
-- `docs/sales/` — the 10-asset founder sales kit (offer one-pager → red flags)
+- `docs/sales/` — the 11-asset founder sales kit (offer one-pager → tool-agnostic positioning)
 
 ## The honest scope statement
 
 This codebase deliberately does **not** include: document ingestion, vector search/RAG,
-client-facing AI chat, autonomous agents, live Stripe billing, or third-party integrations.
-Those are stubbed with clear TODOs (see `src/lib/ai/`, `src/lib/stripe.ts`,
+client-facing AI chat, anything that acts without human review, live vendor integrations,
+LLM-powered generation (the readout builder is deterministic; AI drafting is env-gated off),
+PDF generation, live Stripe billing, or operate-health dashboards. Those are stubbed or
+documented with clear TODOs (see `src/lib/ai/`, `src/lib/stripe.ts`,
 [docs/NEXT_STEPS.md](./docs/NEXT_STEPS.md)) and only get built after paid demand proves they
-should exist. The client portal is a labeled prototype; buying an audit never requires it.
+should exist — nothing gets productized before ≥3 clients ask for the same thing. The client
+portal is a labeled prototype ("Client Delivery Room"); buying an audit never requires it.

@@ -10,7 +10,7 @@
 | Components | Hand-rolled shadcn-style kit | `src/components/ui/*` — native elements, zero runtime deps beyond cva/clsx/tailwind-merge |
 | Forms | react-hook-form + zod (`@hookform/resolvers`) | Public/client forms; admin uses plain `<form action>` server actions |
 | Validation | zod v4 — single source in `src/lib/validation/intake.ts` | Same schemas client + server |
-| Database | Supabase Postgres, migrations in `supabase/migrations/` | 22 tables, RLS on all |
+| Database | Supabase Postgres, migrations in `supabase/migrations/` | 28 tables, RLS on all |
 | Auth | Supabase Auth via `@supabase/ssr` (cookie sessions) | |
 | Email | Resend scaffold (`src/lib/email.ts`) | Console-log stub without key |
 | Payments | Stripe scaffold (`src/lib/stripe.ts`) | Payment Link recommended for validation |
@@ -23,28 +23,36 @@
 src/
 ├─ proxy.ts                  # session refresh + route gating (/portal, /admin, /start-audit)
 ├─ app/
-│  ├─ (marketing)/           # 12 static pages, shared header/footer layout
+│  ├─ (marketing)/           # 12 static pages (managed-workspace replaced command-center)
 │  ├─ (auth)/                # login, signup (centered card layout)
 │  ├─ auth/callback/         # code exchange for email confirmation
 │  ├─ start-audit/           # intake wizard (auth-gated) + server action
-│  ├─ portal/                # client prototype workspace (8 pages, read-mostly)
-│  ├─ admin/                 # internal CRM (pipeline, leads, clients, client detail)
+│  ├─ portal/                # "Client Delivery Room" prototype (10 pages, read-mostly;
+│  │                         #   incl. stack + readout views)
+│  ├─ admin/                 # internal CRM + delivery engine:
+│  │  ├─ tools/              #   vetted vendor catalog (list/filter/new/edit)
+│  │  ├─ playbooks/          #   workflow playbook library (list/new/edit/duplicate)
+│  │  └─ clients/[orgId]/    #   client detail + stack builder + readout builder (+ print)
 │  ├─ sitemap.ts / robots.ts / opengraph-image.tsx
 ├─ components/
 │  ├─ ui/                    # button, card, input, select, textarea, label, badge, alert, separator
-│  ├─ marketing/             # logo, header, footer, section, cta-band
+│  ├─ marketing/             # logo, header, footer, section, cta-band, tool-categories
 │  └─ status-badge, empty-state, setup-notice, analytics
 ├─ lib/
 │  ├─ supabase/              # client.ts (browser) · server.ts (RSC/actions) · middleware.ts
-│  ├─ actions/               # auth.ts · org.ts · admin.ts · comments.ts (all "use server")
+│  ├─ actions/               # auth.ts · org.ts · admin.ts · comments.ts · operating.ts
 │  ├─ validation/intake.ts   # zod schemas + option constants
 │  ├─ types/database.ts      # hand-maintained row types (swap for generated later)
-│  ├─ content.ts             # offers, workflows, FAQs, risk boundaries (single source)
+│  ├─ content.ts             # positioning, offers, workflows, tool categories, FAQs
+│  ├─ safety.ts              # decline/defer rails (pure, unit-tested, used by actions)
+│  ├─ readout.ts             # DETERMINISTIC audit-readout markdown generator (no LLM)
+│  ├─ proposal.ts            # proposal drafting math from a stack recommendation (pure)
+│  ├─ markdown.tsx           # dependency-free renderer for our markdown subset
 │  ├─ prompts/               # versioned prompt templates (future AI features)
-│  ├─ ai/                    # generate-audit-summary stub
+│  ├─ ai/                    # generate-audit-summary stub (gated by AI_DRAFTING_ENABLED)
 │  ├─ email.ts / stripe.ts   # graceful-degradation scaffolds
 │  └─ env.ts / utils.ts / portal.ts
-└─ tests/                    # vitest suites
+└─ tests/                    # vitest suites (content, migrations, safety, readout, proposal…)
 ```
 
 ## Key decisions & rationale
@@ -75,7 +83,16 @@ order matters for FK integrity.
 
 **Internal CRM, not SaaS.** Tables like `contacts`, `discovery_notes`, and `activity_events`
 are admin-only by policy. The portal is intentionally read-mostly (comments are the only client
-write) and wears a permanent "Prototype" banner.
+write) and wears a permanent "Client Delivery Room (prototype)" banner.
+
+**The operating layer is internal leverage, not platform surface.** The vendor catalog
+(`tool_vendors`) and playbook library (`workflow_playbooks`) encode the METHOD — vetting,
+data ceilings, naming rules — and are admin-only by RLS. Client-facing exposure is a
+deliberate act: stack recommendations become member-readable only at `status='shared'`,
+readouts only at `client_visible=true`, and non-public vendors render as generic categories.
+Readout generation is deterministic (`src/lib/readout.ts`); safety rails (`src/lib/safety.ts`)
+force decline-or-defer on regulated/prohibited data and restricted workflow areas before any
+write. LLM drafting stays a stub behind `AI_DRAFTING_ENABLED=false`.
 
 ## Future AI surface (designed, not built)
 

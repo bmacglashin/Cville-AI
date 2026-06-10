@@ -4,7 +4,7 @@ import { Section } from "@/components/marketing/section";
 export const metadata: Metadata = {
   title: "Terms & disclaimers",
   description:
-    "Draft terms of use and service disclaimers for Agent Ally's website and advisory engagements.",
+    "Draft terms of use and service disclaimers for Copp Oak Advisory's website and advisory engagements.",
 };
 
 export default function TermsPage() {
@@ -27,7 +27,7 @@ export default function TermsPage() {
           <section>
             <h2 className="font-display text-2xl text-ink">1. What this website is</h2>
             <p className="mt-4">
-              This site describes advisory and implementation services offered by Agent Ally
+              This site describes advisory and implementation services offered by Copp Oak Advisory
               (Charlottesville, VA) and lets you apply for an engagement. Content here is general
               information, not advice for your specific situation. Submitting an application
               doesn't create an engagement; engagements begin only when both parties sign a
@@ -38,7 +38,7 @@ export default function TermsPage() {
           <section>
             <h2 className="font-display text-2xl text-ink">2. Not legal, tax, financial, or compliance advice</h2>
             <p className="mt-4">
-              Agent Ally provides operational and technology advisory services. Nothing we publish
+              Copp Oak Advisory provides operational and technology advisory services. Nothing we publish
               or deliver constitutes legal, tax, accounting, investment, insurance, or regulatory
               compliance advice. Where engagements touch areas with legal or regulatory
               implications, we'll tell you to involve your attorney or accountant — and mean it.
@@ -52,7 +52,7 @@ export default function TermsPage() {
               incomplete, or out of date. Deliverables and workflows we build are designed with
               human review steps, and clients are responsible for reviewing AI-assisted output
               before relying on it or sending it to third parties. We do not build or operate
-              systems that take autonomous action on a client's business or customers.
+              systems that act on a client's business or customers without human review.
             </p>
           </section>
 
@@ -80,15 +80,18 @@ export default function TermsPage() {
             <h2 className="font-display text-2xl text-ink">6. Intellectual property</h2>
             <p className="mt-4">
               Audit deliverables and workflow SOPs produced for your engagement belong to you on
-              full payment. Our underlying methods, templates, prompt frameworks, and tooling
-              remain ours. Engagement-specific IP terms are set out in the SOW.
+              full payment, and tool accounts configured during an engagement belong to your
+              business from day one. Our underlying methods, templates, prompt frameworks,
+              playbooks, and vetting criteria remain ours. Third-party tools remain governed by
+              their vendors' terms — we are not affiliated with, and do not resell or sublicense,
+              any tool vendor. Engagement-specific IP terms are set out in the SOW.
             </p>
           </section>
 
           <section>
             <h2 className="font-display text-2xl text-ink">7. Limitation of liability</h2>
             <p className="mt-4">
-              To the maximum extent permitted by law, Agent Ally's total liability arising out of
+              To the maximum extent permitted by law, Copp Oak Advisory's total liability arising out of
               any engagement is limited to the fees paid for that engagement, and neither party is
               liable for indirect or consequential damages. Final language will appear in the MSA.
             </p>

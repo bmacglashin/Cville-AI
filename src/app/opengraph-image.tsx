@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Agent Ally — Practical AI implementation for Charlottesville owner-led businesses";
+export const alt = "Copp Oak Advisory — a tool-agnostic AI operating partner for owner-led businesses";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -31,20 +31,22 @@ export default function OpengraphImage() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: 32,
+              fontSize: 26,
+              fontWeight: 600,
+              letterSpacing: 1,
               color: "#c89a5b",
             }}
           >
-            A
+            CO
           </div>
-          <div style={{ fontSize: 36, fontWeight: 600 }}>Agent Ally</div>
+          <div style={{ fontSize: 36, fontWeight: 600 }}>Copp Oak Advisory</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div style={{ fontSize: 58, lineHeight: 1.15, maxWidth: 980 }}>
-            Practical AI implementation for Charlottesville owner-led businesses.
+          <div style={{ fontSize: 56, lineHeight: 1.15, maxWidth: 1020 }}>
+            A tool-agnostic AI operating partner for owner-led businesses.
           </div>
           <div style={{ fontSize: 28, color: "#c89a5b" }}>
-            Audit first · One workflow at a time · Human review always
+            Audit first · Your accounts, your data · Human review always
           </div>
         </div>
       </div>

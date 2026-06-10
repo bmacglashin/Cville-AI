@@ -2,7 +2,7 @@ import Script from "next/script";
 
 /**
  * Privacy-friendly analytics placeholder. Set NEXT_PUBLIC_PLAUSIBLE_DOMAIN
- * (e.g. "agentally.co") to enable Plausible. No cookies, no PII.
+ * (e.g. "coppoakadvisory.com") to enable Plausible. No cookies, no PII.
  * Swap for another provider later if preferred.
  */
 export function Analytics() {

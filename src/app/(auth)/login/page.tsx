@@ -24,7 +24,7 @@ export default async function LoginPage({
       <CardHeader>
         <CardTitle className="font-display text-2xl">Client login</CardTitle>
         <CardDescription>
-          For audit clients and the Agent Ally team. Not a client yet?{" "}
+          For audit clients and the Copp Oak Advisory team. Not a client yet?{" "}
           <Link href="/apply" className="font-medium text-bronze-700 underline">
             Apply for the audit
           </Link>

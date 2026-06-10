@@ -6,16 +6,17 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Section, SectionHeading } from "@/components/marketing/section";
-import { OFFERS } from "@/lib/content";
+import { ToolCategoriesSection } from "@/components/marketing/tool-categories";
+import { OFFERS, POSITIONING } from "@/lib/content";
 import { formatCents } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Owner Command Center Lite — a post-audit path",
+  title: "Managed AI Workspace + Operate — a post-audit path",
   description:
-    "A private, human-reviewed AI workspace for owners who've completed an audit and proven ROI on at least one workflow. Founding setup $8,500; Operate retainer from $1,500/month. Not sold standalone.",
+    "Client-owned tools configured into a documented AI operating stack, with a monthly operating cadence behind it. Founding setup $8,500; Operate retainer from $1,500/month. Post-audit only — not a private platform.",
 };
 
-export default function CommandCenterPage() {
+export default function ManagedWorkspacePage() {
   const offer = OFFERS[2];
 
   return (
@@ -28,13 +29,14 @@ export default function CommandCenterPage() {
               Post-audit path — not sold standalone
             </Badge>
             <h1 className="font-display text-4xl leading-[1.1] text-ink sm:text-5xl">
-              Owner Command Center Lite.
+              The Managed AI Workspace.
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              For owners who've completed an audit, proven ROI on at least one workflow, and want a
-              private, human-reviewed AI workspace running parts of the operation — with us
-              maintaining and improving it month over month.
+              For owners who've completed an audit, proven ROI on at least one workflow, and want
+              their proven workflows configured into one documented operating stack — built in
+              tools your business owns, with us operating and improving it month over month.
             </p>
+            <p className="mt-4 text-sm font-medium text-ink">{POSITIONING.ownership}</p>
           </div>
         </Section>
       </div>
@@ -44,17 +46,20 @@ export default function CommandCenterPage() {
           <AlertTitle>Read this first</AlertTitle>
           <AlertDescription>
             <p>
-              We don't sell the Command Center to new clients, and we'd be suspicious of anyone who
-              would. It only makes sense after an audit has mapped your data risk and at least one
-              Quickstart has proven your team will actually use this. If you're new here, start
-              with the <Link href="/audit" className="font-medium underline">AI Operating Audit</Link>.
+              This is not a private platform, and we don't sell it to new clients. It only makes
+              sense after an audit has mapped your data risk and at least one Quickstart has proven
+              your team will actually use this. If you're new here, start with the{" "}
+              <Link href="/audit" className="font-medium underline">AI Operating Audit</Link>.
             </p>
           </AlertDescription>
         </Alert>
 
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
           <div>
-            <SectionHeading eyebrow="What it is" title="One place where the approved parts of your operation become askable." />
+            <SectionHeading
+              eyebrow="What it is"
+              title="Your proven workflows, documented and operated as one system — in your own tools."
+            />
             <ul className="mt-8 space-y-4">
               {offer.includes.map((item) => (
                 <li key={item} className="flex gap-3">
@@ -64,11 +69,18 @@ export default function CommandCenterPage() {
               ))}
             </ul>
             <p className="mt-8 text-base leading-relaxed text-muted-foreground">
-              &ldquo;Approved&rdquo; is the operative word. The corpus contains only documents that
-              passed the data-risk review from your audit — no client contracts, no HR records, no
-              regulated material. Assistants answer from that corpus and draft for human review.
-              Nothing acts on its own, and the monthly meeting exists so a person — Ben — is
-              accountable for what the system does and doesn't do.
+              &ldquo;Client-owned&rdquo; is the operative phrase. Every tool is set up in accounts
+              your business controls — your logins, your data, your billing relationships. What we
+              bring is the operating method: which workflows run where, what data each tool may
+              touch, the prompts and SOPs your team follows, the human-review rules, and a monthly
+              cadence that keeps it all working. Cancel the retainer and the workflows keep
+              running, because they were always yours.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              {POSITIONING.existingFirst} Where an audit shows a genuine gap that off-the-shelf
+              tools can't close, a custom build (typically Supabase/Next.js) can be scoped — under
+              its own paid statement of work, after the audit, and only when ROI, data risk,
+              scope, and budget all justify it. That's the exception, and we treat it that way.
             </p>
           </div>
           <Card className="h-fit">
@@ -87,9 +99,10 @@ export default function CommandCenterPage() {
                 $1,500<span className="text-base font-normal text-muted-foreground">/month Operate retainer</span>
               </p>
               <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                Retainer covers monitoring, improvement, the monthly optimization meeting, and small
-                workflow additions. Cancel with 30 days' notice — everything keeps working and your
-                team has the SOPs to run it.
+                The retainer covers the monthly operating cadence: workflow health checks,
+                output-quality review, prompt and SOP updates, team refreshers, and a prioritized
+                improvement backlog. Cancel with 30 days&apos; notice — everything keeps working in
+                your accounts and your team has the SOPs to run it.
               </p>
               <Link href="/apply" className="mt-6 block">
                 <Button variant="outline" className="w-full">
@@ -106,13 +119,13 @@ export default function CommandCenterPage() {
         <Section>
           <SectionHeading
             eyebrow="The path here"
-            title="How a business earns its way to a Command Center."
+            title="How a business earns its way to a Managed AI Workspace."
           />
           <ol className="mt-10 grid gap-5 md:grid-cols-3">
             {[
-              ["1. Audit", "Data-risk ranking and scored use cases establish what's safe and worth building."],
-              ["2. Quickstart(s)", "One workflow proves ROI and — more importantly — that your team adopts it."],
-              ["3. Command Center Lite", "The proven workflows get a shared home, a dashboard, and an operating cadence."],
+              ["1. Audit", "Data-risk ranking, scored use cases, and a recommended stack establish what's safe and worth building."],
+              ["2. Quickstart(s)", "One workflow in your existing tools proves ROI and — more importantly — that your team adopts it."],
+              ["3. Managed AI Workspace", "The proven workflows get documented as one operating stack, with training and a monthly operating cadence."],
             ].map(([title, body]) => (
               <li key={title} className="rounded-xl border border-border bg-card p-6">
                 <h3 className="font-display text-xl text-ink">{title}</h3>
@@ -123,6 +136,8 @@ export default function CommandCenterPage() {
         </Section>
       </div>
 
+      <ToolCategoriesSection />
+
       <section className="section-dark">
         <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8">
           <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
@@ -131,8 +146,8 @@ export default function CommandCenterPage() {
                 The honest first step is the audit.
               </h2>
               <p className="mt-4 text-base leading-relaxed text-pine-100/80">
-                If a Command Center is in your future, the audit is where it starts — and if it
-                isn't, the audit will save you from buying one.
+                If a Managed AI Workspace is in your future, the audit is where it starts — and if
+                it isn't, the audit will save you from buying one.
               </p>
             </div>
             <Link href="/apply">

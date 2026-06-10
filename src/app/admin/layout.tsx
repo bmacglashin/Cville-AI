@@ -25,7 +25,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-pine-950">
+      <header className="border-b border-border bg-pine-950 print:hidden">
         <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
           <div className="flex items-center gap-8">
             <Logo light />
@@ -45,10 +45,22 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               >
                 Clients
               </Link>
+              <Link
+                href="/admin/tools"
+                className="text-sm font-medium text-pine-100 hover:text-white"
+              >
+                Tools
+              </Link>
+              <Link
+                href="/admin/playbooks"
+                className="text-sm font-medium text-pine-100 hover:text-white"
+              >
+                Playbooks
+              </Link>
             </nav>
           </div>
           <div className="flex items-center gap-4">
-            <span className="hidden text-xs text-pine-100/70 sm:inline">Internal — Agent Ally ops</span>
+            <span className="hidden text-xs text-pine-100/70 sm:inline">Internal — Copp Oak Advisory ops</span>
             <form action={signOut}>
               <Button variant="light" size="sm" type="submit">
                 Sign out

@@ -7,7 +7,7 @@ import { Section } from "@/components/marketing/section";
 export const metadata: Metadata = {
   title: "Founder's note",
   description:
-    "Why Agent Ally exists, what the founding cohort gets, and the standard the work is held to — from Ben, founder of Agent Ally in Charlottesville, VA.",
+    "Why Copp Oak Advisory exists, what the founding cohort gets, and the standard the work is held to — from Ben, founder of Copp Oak Advisory in Charlottesville, VA.",
 };
 
 export default function FoundersNotePage() {
@@ -18,7 +18,7 @@ export default function FoundersNotePage() {
           Founder&apos;s note
         </p>
         <h1 className="mt-3 font-display text-4xl leading-[1.1] text-ink">
-          Why I started Agent Ally.
+          Why I started Copp Oak Advisory.
         </h1>
 
         <div className="mt-8 space-y-5 text-base leading-[1.8] text-foreground/90">
@@ -42,7 +42,7 @@ export default function FoundersNotePage() {
             for outcomes.
           </p>
           <p>
-            Agent Ally is my answer to that gap, built in the town where I live. The model is
+            Copp Oak Advisory is my answer to that gap, built in the town where I live. The model is
             deliberately old-fashioned: <strong>paid diagnostic first, then one carefully chosen
             implementation, then earn the next step.</strong> The audit costs $950 because the
             answer is worth paying for — including when the answer is &ldquo;not yet, and
@@ -74,7 +74,7 @@ export default function FoundersNotePage() {
           <p className="pt-2">
             — Ben
             <br />
-            <span className="text-sm text-muted-foreground">Founder, Agent Ally · Charlottesville, VA</span>
+            <span className="text-sm text-muted-foreground">Founder, Copp Oak Advisory · Charlottesville, VA</span>
           </p>
         </div>
 

@@ -84,8 +84,8 @@ export default function ApplyPage() {
           ) : (
             <p className="mt-8 rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
               Prefer email? Reach Ben directly at{" "}
-              <a href="mailto:ben@agentally.co" className="font-semibold text-bronze-700 underline">
-                ben@agentally.co
+              <a href="mailto:ben@coppoakadvisory.com" className="font-semibold text-bronze-700 underline">
+                ben@coppoakadvisory.com
               </a>
               .
             </p>
