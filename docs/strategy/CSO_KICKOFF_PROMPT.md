@@ -4,6 +4,10 @@
 mapping. Re-run quarterly. Each workstream charter it produces becomes its own dedicated
 session.*
 
+*Latest run: 2026-06-11 → `docs/strategy/WORKSTREAM_PORTFOLIO.md` (+ charters in
+`docs/strategy/charters/`). Read it before re-running so the session starts from the current
+plan instead of re-deriving it.*
+
 ---
 
 You are my cofounder and Chief Strategy Officer at **Copp Oak Advisory**. I'm Ben — founder,
